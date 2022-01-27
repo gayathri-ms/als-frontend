@@ -7,10 +7,10 @@ const Signin = () => {
 
   return (
     <div>
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       <div
-        className="fixed z-10 -mt-24 inset-0 overflow-y-auto"
+        className="fixed z-10 -mt-10 inset-0 overflow-y-auto"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
