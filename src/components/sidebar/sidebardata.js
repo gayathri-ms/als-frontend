@@ -57,11 +57,11 @@ export const SidebarData = [
     path: "/company",
     icon: <FaIcons.FaCartPlus />,
   },
-  //   {
-  //     title: "Team",
-  //     path: "/team",
-  //     icon: <IoIcons.IoMdPeople />,
-  //   },
+  {
+    title: "Vehicle",
+    path: "/vehicle",
+    icon: <IoIcons.IoMdPeople />,
+  },
   //   {
   //     title: "Messages",
   //     path: "/messages",
