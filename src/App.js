@@ -8,9 +8,9 @@ import { Menu } from "react-pro-sidebar";
 function App() {
   return (
     <div className="App text-center">
-      <Menu>
-        <Sidebar />
-      </Menu>
+      {/* <Menu> */}
+      <Sidebar />
+      {/* </Menu> */}
     </div>
   );
 }

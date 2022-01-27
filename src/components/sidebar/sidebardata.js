@@ -62,6 +62,11 @@ export const SidebarData = [
     path: "/vehicle",
     icon: <IoIcons.IoMdPeople />,
   },
+  {
+    title: "Form",
+    path: "/form",
+    icon: <IoIcons.IoMdPeople />,
+  },
   //   {
   //     title: "Messages",
   //     path: "/messages",

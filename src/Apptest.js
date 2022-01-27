@@ -16,6 +16,7 @@ import Sidebar from "./components/sidebar/sidebar";
 import Company from "./components/company";
 import Home from "./components/home";
 import Vehicle from "./components/vehicle";
+import Form from "./components/form";
 
 const Apptest = () => {
   return (
@@ -29,6 +30,7 @@ const Apptest = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/company" element={<Company />} />
           <Route path="/vehicle" element={<Vehicle />} />
+          <Route path="/form" element={<Form />} />
         </Routes>
       </div>
     </Router>

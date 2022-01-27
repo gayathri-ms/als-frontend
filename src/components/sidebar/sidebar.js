@@ -28,8 +28,10 @@ const SidebarNav = styled.nav`
   background: pink;
   width: 250px;
   height: 100vh;
+  box-shadow: 0px 3px 6px 3px #bd86ac, 0px 3px 6px 3px #e6b8d8;
   display: flex;
   justify-content: center;
+  color: #5e0b63;
   position: fixed;
   top: 0;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
