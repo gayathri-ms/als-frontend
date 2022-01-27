@@ -7,7 +7,6 @@ import {
   Link,
 } from "react-router-dom";
 import "./App.css";
-import Header from "./components/header";
 import Signin from "./components/signin";
 // import { isAuthenticated } from "./helper/auth";
 import Signup from "./components/signup";

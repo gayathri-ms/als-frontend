@@ -1,4 +1,3 @@
-import Header from "./components/header";
 import Company from "./components/company";
 
 import { useState } from "react";

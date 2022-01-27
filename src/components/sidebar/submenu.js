@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const SidebarLink = styled(Link)`
   display: flex;
-
   color: #5e0b63;
   justify-content: space-between;
   align-items: center;
