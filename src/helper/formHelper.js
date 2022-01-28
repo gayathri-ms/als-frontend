@@ -1,6 +1,6 @@
-import { API } from "../backend";
+// import { API } from "../backend";
 
-//const { user, token } = isAuthenticated();
+const API = "http://localhost:3000";
 
 export const createForm = (form, user, token) => {
   return fetch(`${API}/load/addload/${user._id}`, {

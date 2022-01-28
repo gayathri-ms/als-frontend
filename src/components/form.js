@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { isAuthenticated } from "../helper/auth";
+import { getAllCompanies, getRate } from "../helper/companyHelper";
+import { createForm } from "../helper/formHelper";
+import { getAllVehicle } from "../helper/vehicleHelper";
 
 const Form = () => {
   const [values, setValues] = useState({
@@ -8,30 +12,79 @@ const Form = () => {
     rate: 0,
     delivery: "in",
     extras: 0,
-    gst: "yes",
+    gst: "no",
     gstamt: 0,
   });
+
+  const [vehicles, setVehicles] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
   const { vehicle_no, company, no_loads, rate, delivery, extras, gst, gstamt } =
     values;
 
+  const users = isAuthenticated();
+  const [msg, setMsg] = useState("");
+
   const onHandle = (name) => (e) => {
-    setValues({ ...values, [name]: e.target.value });
+    console.log("name>>", name);
+    if (name === "company") {
+      const detail = companies.filter(
+        (data) => data.company_name === e.target.value
+      );
+      console.log("detail", detail);
+      setValues({
+        ...values,
+        company: detail[0].company_name,
+        rate: detail[0].rate,
+      });
+    } else setValues({ ...values, [name]: e.target.value });
   };
+
+  useEffect(() => {
+    getAllVehicle(users.user, users.token)
+      .then((data) => {
+        if (data.err) {
+          setMsg(data.err);
+        }
+        if (data.length === 0) {
+          setMsg("Add Vehicles");
+        }
+        setVehicles(data);
+      })
+      .catch((err) => console.log(err));
+
+    getAllCompanies(users.user, users.token)
+      .then((data) => {
+        if (data.err) {
+          setMsg(data.err);
+        }
+        if (data.length === 0) {
+          setMsg("Add Vehicles");
+        }
+        setCompanies(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
     console.log("values", values);
-    setValues({
-      ...values,
-      vehicle_no: "",
-      company: "",
-      no_loads: 0,
-      rate: 0,
-      delivery: "in",
-      extras: 0,
-      gst: "yes",
-      gstamt: 0,
+    createForm(values, users.user, users.token).then((data) => {
+      if (data.err) {
+        setMsg(data.err);
+      }
+      setValues({
+        ...values,
+        vehicle_no: "",
+        company: "",
+        no_loads: 0,
+        rate: 0,
+        delivery: "in",
+        extras: 0,
+        gst: "no",
+        gstamt: 0,
+      });
+      setMsg("Added Successfully");
     });
   };
 
@@ -46,28 +99,40 @@ const Form = () => {
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Vehicle No
                   </label>
-                  <input
-                    type="text"
-                    placeholder="Vehicle No"
+                  <select
                     onChange={onHandle("vehicle_no")}
                     value={vehicle_no}
-                    required
-                    className="w-1/2 ml-8 md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                  />
+                    className="w-full ml-5 my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  >
+                    {vehicles.map((vehicle, index) => {
+                      return (
+                        <option key={index} value={vehicle.vehicle_no}>
+                          {vehicle.vehicle_no}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
               </div>
               <div className="mb-6 mt-6 mr-5">
                 <label className=" mb-8 text-lg font-medium text-pink-600">
                   Company Name
                 </label>
-                <input
-                  type="text"
-                  placeholder="Company Name"
+                <select
                   onChange={onHandle("company")}
                   value={company}
-                  required
-                  className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                />
+                  className="w-full ml-5 my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-black"
+                >
+                  <option>Select</option>
+                  {companies.map((company, index) => {
+                    return (
+                      <option key={index}>
+                        {company.company_name}
+                        {/* {setValues({ ...values, rate: company.rate })} */}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
               <div className="md:flex">
                 <div className="mb-6 mr-5">
@@ -115,19 +180,23 @@ const Form = () => {
                     </select>
                   </div>
                 </div>
-                <div className="mb-6 mr-5">
-                  <label className=" mb-2 text-lg font-medium text-pink-600">
-                    Extras
-                  </label>
-                  <input
-                    type="number"
-                    onChange={onHandle("extras")}
-                    value={extras}
-                    placeholder="Extras"
-                    required
-                    className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                  />
-                </div>
+                {delivery === "out" ? (
+                  <div className="mb-6 mr-5">
+                    <label className=" mb-2 text-lg font-medium text-pink-600">
+                      Extras
+                    </label>
+                    <input
+                      type="number"
+                      onChange={onHandle("extras")}
+                      value={extras}
+                      placeholder="Extras"
+                      required
+                      className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="md:flex">
                 <div className="mb-6 mr-5">
@@ -148,19 +217,23 @@ const Form = () => {
                     </select>
                   </div>
                 </div>
-                <div className="mb-6 mr-5">
-                  <label className="mb-2 text-lg font-medium text-pink-600">
-                    GST in %
-                  </label>
-                  <input
-                    type="number"
-                    onChange={onHandle("gstamt")}
-                    placeholder="gst"
-                    value={gstamt}
-                    required
-                    className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                  />
-                </div>
+                {gst === "yes" ? (
+                  <div className="mb-6 mr-5">
+                    <label className="mb-2 text-lg font-medium text-pink-600">
+                      GST in %
+                    </label>
+                    <input
+                      type="number"
+                      onChange={onHandle("gstamt")}
+                      placeholder="gst"
+                      value={gstamt}
+                      required
+                      className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="mb-6 mt-10 text-center">
@@ -172,6 +245,9 @@ const Form = () => {
                 </button>
               </div>
             </form>
+            <div className="font-medium mt-5 text-center text-2xl text-green-700">
+              {msg}
+            </div>
           </div>
         </div>
       </div>

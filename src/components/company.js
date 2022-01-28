@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { createCompany } from "../helper/companyHelper";
+import { isAuthenticated } from "../helper/auth";
+import { getAllCompanies } from "../helper/companyHelper";
 
 const Company = () => {
   const [values, setValues] = useState({
@@ -11,22 +13,32 @@ const Company = () => {
   });
 
   const { company_name, address, phone, rate, fixed_date } = values;
-
+  const [msg, setMsg] = useState("");
   const onHandle = (name) => (e) => {
     setValues({ ...values, [name]: e.target.value });
   };
+  const users = isAuthenticated();
+  const [companies, setCompanies] = useState([]);
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
     console.log("value", values);
-    setValues({
-      ...values,
-      company_name: "",
-      address: "",
-      phone: "",
-      rate: "",
-      fixed_date: "",
-    });
+    createCompany(values, users.user, users.token)
+      .then((data) => {
+        if (data.err) {
+          setMsg(data.err);
+        }
+        setMsg("Added Successfully");
+        setValues({
+          ...values,
+          company_name: "",
+          address: "",
+          phone: "",
+          rate: "",
+          fixed_date: "",
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -113,6 +125,9 @@ const Company = () => {
                 </button>
               </div>
             </form>
+            <div className="font-medium mt-5 text-center text-2xl text-green-700">
+              {msg}
+            </div>
           </div>
         </div>
       </div>

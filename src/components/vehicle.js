@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { isAuthenticated } from "../helper/auth";
+import { createVehicle } from "../helper/vehicleHelper";
 
 const Vehicle = () => {
   const [values, setValues] = useState({
@@ -7,6 +9,8 @@ const Vehicle = () => {
   });
 
   const { vehicle_no, place } = values;
+  const users = isAuthenticated();
+  const [msg, setMsg] = useState("");
 
   const onHandle = (name) => (e) => {
     setValues({ ...values, [name]: e.target.value });
@@ -15,7 +19,15 @@ const Vehicle = () => {
   const onHandleSubmit = (e) => {
     e.preventDefault();
     console.log("values", values);
-    setValues({ ...values, vehicle_no: "", place: "" });
+    createVehicle(values, users.user, users.token)
+      .then((data) => {
+        if (data.err) {
+          setMsg(data.err);
+        }
+        setValues({ ...values, vehicle_no: "", place: "" });
+        setMsg("Added Successfully");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -61,6 +73,9 @@ const Vehicle = () => {
                 </button>
               </div>
             </form>
+            <div className="font-medium mt-5 text-center text-2xl text-green-700">
+              {msg}
+            </div>
           </div>
         </div>
       </div>
