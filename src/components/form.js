@@ -1,12 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Form = () => {
+  const [values, setValues] = useState({
+    vehicle_no: "",
+    company: "",
+    no_loads: 0,
+    rate: 0,
+    delivery: "in",
+    extras: 0,
+    gst: "yes",
+    gstamt: 0,
+  });
+
+  const { vehicle_no, company, no_loads, rate, delivery, extras, gst, gstamt } =
+    values;
+
+  const onHandle = (name) => (e) => {
+    setValues({ ...values, [name]: e.target.value });
+  };
+
+  const onHandleSubmit = (e) => {
+    e.preventDefault();
+    console.log("values", values);
+    setValues({
+      ...values,
+      vehicle_no: "",
+      company: "",
+      no_loads: 0,
+      rate: 0,
+      delivery: "in",
+      extras: 0,
+      gst: "yes",
+      gstamt: 0,
+    });
+  };
+
   return (
     <div className="">
       <div className=" mx-auto">
         <div className="max-w-2xl p-5 mx-auto my-10 bg-white rounded-md shadow-sm">
           <div>
-            <form>
+            <form onSubmit={onHandleSubmit}>
               <div className="md:flex border-t-2 border-b-2 border-red-200">
                 <div className="mb-6 mt-5 mr-5">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
@@ -15,18 +49,10 @@ const Form = () => {
                   <input
                     type="text"
                     placeholder="Vehicle No"
+                    onChange={onHandle("vehicle_no")}
+                    value={vehicle_no}
                     required
-                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                  />
-                </div>
-                <div className="mb-6 mt-5 mr-5 ">
-                  <label className=" mb-8 text-lg font-medium text-pink-600">
-                    Date
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    className="w-1/2 ml-8 md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                   />
                 </div>
               </div>
@@ -37,6 +63,8 @@ const Form = () => {
                 <input
                   type="text"
                   placeholder="Company Name"
+                  onChange={onHandle("company")}
+                  value={company}
                   required
                   className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                 />
@@ -48,6 +76,8 @@ const Form = () => {
                   </label>
                   <input
                     type="number"
+                    onChange={onHandle("no_loads")}
+                    value={no_loads}
                     placeholder="no of loads"
                     required
                     className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
@@ -59,7 +89,9 @@ const Form = () => {
                   </label>
                   <input
                     type="number"
+                    onChange={onHandle("rate")}
                     placeholder="Rate"
+                    value={rate}
                     required
                     className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                   />
@@ -73,9 +105,13 @@ const Form = () => {
                     </label>
                   </div>
                   <div>
-                    <select className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300">
-                      <option value="option 1">In</option>
-                      <option value="option 2">Out</option>
+                    <select
+                      onChange={onHandle("delivery")}
+                      value={delivery}
+                      className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    >
+                      <option value="in">In</option>
+                      <option value="out">Out</option>
                     </select>
                   </div>
                 </div>
@@ -85,6 +121,8 @@ const Form = () => {
                   </label>
                   <input
                     type="number"
+                    onChange={onHandle("extras")}
+                    value={extras}
                     placeholder="Extras"
                     required
                     className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
@@ -100,9 +138,13 @@ const Form = () => {
                   </div>
 
                   <div>
-                    <select className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300">
-                      <option value="option 1">Yes</option>
-                      <option value="option 2">No</option>
+                    <select
+                      onChange={onHandle("gst")}
+                      value={gst}
+                      className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    >
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
                     </select>
                   </div>
                 </div>
@@ -112,7 +154,9 @@ const Form = () => {
                   </label>
                   <input
                     type="number"
+                    onChange={onHandle("gstamt")}
                     placeholder="gst"
+                    value={gstamt}
                     required
                     className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                   />

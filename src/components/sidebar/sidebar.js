@@ -6,6 +6,7 @@ import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./sidebardata";
 import SubMenu from "./submenu";
 import { IconContext } from "react-icons/lib";
+import { isAuthenticated } from "../../helper/auth";
 
 const Nav = styled.div`
   background: white;
@@ -63,7 +64,19 @@ const Sidebar = () => {
               <AiIcons.AiOutlineClose onClick={showSidebar} />
             </NavIcon>
             {SidebarData.map((item, index) => {
-              return <SubMenu item={item} key={index} />;
+              return (
+                <div key={index}>
+                  {((item.title === "Company" ||
+                    item.title === "Vehicle" ||
+                    item.title === "Form") &&
+                    isAuthenticated()) ||
+                  item.title === "Home" ? (
+                    <SubMenu item={item} />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              );
             })}
           </SidebarWrap>
         </SidebarNav>
