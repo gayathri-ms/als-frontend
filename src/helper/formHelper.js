@@ -32,3 +32,25 @@ export const getallform = (user, token) => {
     })
     .catch((error) => console.log(error));
 };
+
+export const updateform = (invoice, amt, acc_holder, user, token) => {
+  return fetch(`${API}/load/updateload/${user._id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      invoice: invoice,
+      amt: amt,
+      acc_holder: acc_holder,
+    }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
