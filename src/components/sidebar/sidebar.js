@@ -68,7 +68,9 @@ const Sidebar = () => {
                 <div key={index}>
                   {((item.title === "Company" ||
                     item.title === "Vehicle" ||
-                    item.title === "Form") &&
+                    item.title === "Form" ||
+                    item.title === "Contact Details" ||
+                    item.title === "Update Amount") &&
                     isAuthenticated()) ||
                   item.title === "Home" ? (
                     <SubMenu item={item} />

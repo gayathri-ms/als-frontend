@@ -16,6 +16,9 @@ import Company from "./components/company";
 import Home from "./components/home";
 import Vehicle from "./components/vehicle";
 import Form from "./components/form";
+import Phoneno from "./components/phoneno";
+import Companyname from "./components/companyname";
+import Updateamt from "./components/updateamt";
 
 const Apptest = () => {
   return (
@@ -30,6 +33,9 @@ const Apptest = () => {
           <Route path="/company" element={<Company />} />
           <Route path="/vehicle" element={<Vehicle />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/phoneno" element={<Phoneno />} />
+          <Route path="/companyname" element={<Companyname />} />
+          <Route path="/updateamount" element={<Updateamt />} />
         </Routes>
       </div>
     </Router>

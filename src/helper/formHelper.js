@@ -17,3 +17,18 @@ export const createForm = (form, user, token) => {
     })
     .catch((error) => console.log(error));
 };
+
+export const getallform = (user, token) => {
+  return fetch(`${API}/load/getall/${user._id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};

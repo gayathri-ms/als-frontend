@@ -52,6 +52,33 @@ export const SidebarData = [
     path: "/form",
     icon: <IoIcons.IoMdPeople />,
   },
+  {
+    title: "Contact Details",
+    path: "/",
+    icon: <IoIcons.IoMdPeople />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Phone Number",
+        path: "/phoneno",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Company Name",
+        path: "/companyname",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+    ],
+  },
+  {
+    title: "Update Amount",
+    path: "/updateamount",
+    icon: <IoIcons.IoMdPeople />,
+  },
   //   {
   //     title: "Messages",
   //     path: "/messages",

@@ -59,7 +59,7 @@ const Form = () => {
           setMsg(data.err);
         }
         if (data.length === 0) {
-          setMsg("Add Vehicles");
+          setMsg("Add Company");
         }
         setCompanies(data);
       })
@@ -69,23 +69,29 @@ const Form = () => {
   const onHandleSubmit = (e) => {
     e.preventDefault();
     console.log("values", values);
-    createForm(values, users.user, users.token).then((data) => {
-      if (data.err) {
-        setMsg(data.err);
-      }
-      setValues({
-        ...values,
-        vehicle_no: "",
-        company: "",
-        no_loads: 0,
-        rate: 0,
-        delivery: "in",
-        extras: 0,
-        gst: "no",
-        gstamt: 0,
+    if (company !== "" && vehicle_no !== "" && no_loads !== 0) {
+      createForm(values, users.user, users.token).then((data) => {
+        if (data.err) {
+          setMsg(data.err);
+        }
+        setValues({
+          ...values,
+          vehicle_no: "",
+          company: "",
+          no_loads: 0,
+          rate: 0,
+          delivery: "in",
+          extras: 0,
+          gst: "no",
+          gstamt: 0,
+        });
+        setMsg("Added Successfully");
       });
-      setMsg("Added Successfully");
-    });
+    } else {
+      if (company === "") setMsg("Fill the Company Name");
+      if (vehicle_no === "") setMsg("Fill the Vehicle Number");
+      if (no_loads === 0) setMsg("Fill the total number of Loads");
+    }
   };
 
   return (
@@ -104,6 +110,7 @@ const Form = () => {
                     value={vehicle_no}
                     className="w-full ml-5 my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                   >
+                    <option>Select</option>
                     {vehicles.map((vehicle, index) => {
                       return (
                         <option key={index} value={vehicle.vehicle_no}>
@@ -245,8 +252,16 @@ const Form = () => {
                 </button>
               </div>
             </form>
-            <div className="font-medium mt-5 text-center text-2xl text-green-700">
-              {msg}
+            <div>
+              {msg === "Added Successfully" ? (
+                <div className="font-medium mt-5 text-center text-2xl text-green-700">
+                  {msg}
+                </div>
+              ) : (
+                <div className="font-medium mt-5 text-center text-2xl text-red-700">
+                  {msg}
+                </div>
+              )}
             </div>
           </div>
         </div>
