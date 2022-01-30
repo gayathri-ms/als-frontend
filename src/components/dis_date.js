@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { isAuthenticated } from "../helper/auth";
-import { getallform, updateform } from "../helper/formHelper";
+import React from 'react';
 
-const Dis_vehicleNo = () => {
-  const [vehicle, setVehicle] = useState(0);
+const Dis_date = () => {
+    const [date, setDate] = useState("");
   const [forms, setForms] = useState([]);
   const [form, setForm] = useState([]);
   const [msg, setMsg] = useState("");
@@ -22,33 +20,40 @@ const Dis_vehicleNo = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
   const onHandle = (e) => {
-    const data = forms.filter((c) => c.vehicle_no === e.target.value);
+    
+    const date = new Date(e.target.value);
+  var dateObj = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+
+  const month = dateObj.getMonth() + 1;
+  const day = String(dateObj.getDate()).padStart(2, "0");
+  const year = dateObj.getFullYear();
+  const output = day + "-" + month + "-" + year;
+    const data = forms.filter(
+      (c) => c.dateformat !== undefined && c.dateformat.indexOf(output) !== -1
+    );
+    // console.log("data", data);
+
     setForm(data);
-    setVehicle(e.target.value);
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    let detail = forms.filter((data) => data.vehicle_no === vehicle);
-    setForm(detail);
+    setDate(e.target.value);
   };
 
   return (
     <div className="flex flex-col">
-      <form onSubmit={onSubmit}>
-        <div className="w-3/4 md:w-80 flex flex-col mx-auto">
-          <label className=" text-xl font-medium text-pink-600">Invoice</label>
-          <input
-            type="number"
-            onChange={onHandle}
-            placeholder="Vehicle"
-            value={vehicle}
-            required
-            className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-          />
-        </div>
-      </form>
-
+      {/* <form> */}
+      <div className="w-3/4 md:w-80 flex flex-col mx-auto">
+        <label className=" text-xl font-medium text-pink-600">Date</label>
+        <input
+          type="date"
+          onChange={onHandle}
+          placeholder="Date"
+          value={date}
+          required
+          className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+        />
+      </div>
+      {/* </form> */}
       <div className="text-center mb-5">
         <div className="font-medium mt-5 text-center text-2xl text-red-700">
           {msg}
@@ -178,5 +183,4 @@ const Dis_vehicleNo = () => {
   );
 };
 
-export default Dis_vehicleNo;
-
+export default Dis_date;

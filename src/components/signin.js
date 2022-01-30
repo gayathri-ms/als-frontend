@@ -14,6 +14,7 @@ const Signin = () => {
   const [redirect, setRedirect] = useState(false);
   const { email, password } = values;
   const onHandle = (name) => (e) => {
+    console.log(e.target.value)
     setValues({ ...values, [name]: e.target.value });
   };
   const onHandleSubmit = (e) => {
