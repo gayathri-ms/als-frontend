@@ -101,7 +101,7 @@ export const SidebarData = [
       },
       {
         title: "Date",
-        path: "/phoneno",
+        path: "/display_date",
         icon: <IoIcons.IoIosPaper />,
         cName: "sub-nav",
       },

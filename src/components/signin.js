@@ -4,7 +4,7 @@ import { authenticate, isAuthenticated, signin } from "../helper/auth";
 import Sidebar from "./sidebar/sidebar";
 import { frontend } from "./variables";
 
-const Signin = () => {
+const Sample = () => {
   const [next, setNext] = useState(false);
   const [values, setValues] = useState({
     email: "",
@@ -14,7 +14,6 @@ const Signin = () => {
   const [redirect, setRedirect] = useState(false);
   const { email, password } = values;
   const onHandle = (name) => (e) => {
-    console.log(e.target.value)
     setValues({ ...values, [name]: e.target.value });
   };
   const onHandleSubmit = (e) => {
@@ -22,11 +21,11 @@ const Signin = () => {
     console.log("value", values);
     signin(values)
       .then((data) => {
+        console.log("data", data);
         if (data.err) {
           setMsg(data.err);
           setValues({ ...values, email: "", password: "" });
-        }
-        authenticate(data, () => setRedirect(true));
+        } else authenticate(data, () => setRedirect(true));
       })
       .catch((err) => console.log(err));
   };
@@ -42,7 +41,7 @@ const Signin = () => {
       {/* <Sidebar /> */}
 
       <div
-        className="fixed z-10 -mt-10 inset-0 overflow-y-auto"
+        className="fixed z-10 -mt-24 inset-0 overflow-y-auto"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
@@ -113,6 +112,17 @@ const Signin = () => {
                     Login
                   </button>
                 </div>
+                <div className="text-center mb-5">
+                  {msg === "Updated Successfully" ? (
+                    <div className="font-medium mt-5 capitalize text-center text-2xl text-green-700">
+                      {msg}
+                    </div>
+                  ) : (
+                    <div className="font-medium mt-5 capitalize text-center text-2xl text-red-700">
+                      {msg}
+                    </div>
+                  )}{" "}
+                </div>
                 <div className="bg-white text-center mt-8">
                   <p>
                     Don't have an account?{" "}
@@ -133,4 +143,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Sample;

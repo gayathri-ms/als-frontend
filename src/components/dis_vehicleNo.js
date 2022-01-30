@@ -3,7 +3,7 @@ import { isAuthenticated } from "../helper/auth";
 import { getallform, updateform } from "../helper/formHelper";
 
 const Dis_vehicleNo = () => {
-  const [vehicle, setVehicle] = useState(0);
+  const [vehicle, setVehicle] = useState("");
   const [forms, setForms] = useState([]);
   const [form, setForm] = useState([]);
   const [msg, setMsg] = useState("");
@@ -23,23 +23,24 @@ const Dis_vehicleNo = () => {
       .catch((err) => console.log(err));
   }, []);
   const onHandle = (e) => {
-    const data = forms.filter((c) => c.vehicle_no === e.target.value);
+    const data = forms.filter(
+      (c) =>
+        c.vehicle_no !== undefined &&
+        c.vehicle_no.indexOf(e.target.value) !== -1
+    );
     setForm(data);
     setVehicle(e.target.value);
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    let detail = forms.filter((data) => data.vehicle_no === vehicle);
-    setForm(detail);
   };
 
   return (
     <div className="flex flex-col">
-      <form onSubmit={onSubmit}>
+      <form>
         <div className="w-3/4 md:w-80 flex flex-col mx-auto">
-          <label className=" text-xl font-medium text-pink-600">Invoice</label>
+          <label className=" text-xl font-medium text-pink-600">
+            Vehicle No
+          </label>
           <input
-            type="number"
+            type="text"
             onChange={onHandle}
             placeholder="Vehicle"
             value={vehicle}
@@ -179,4 +180,3 @@ const Dis_vehicleNo = () => {
 };
 
 export default Dis_vehicleNo;
-

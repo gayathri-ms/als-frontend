@@ -27,15 +27,10 @@ const Dis_inv = () => {
     setForm(data);
     setInvoice(e.target.value);
   };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    let detail = forms.filter((data) => data.invoice === Number(invoice));
-    setForm(detail);
-  };
 
   return (
     <div className="flex flex-col">
-      <form onSubmit={onSubmit}>
+      <form>
         <div className="w-3/4 md:w-80 flex flex-col mx-auto">
           <label className=" text-xl font-medium text-pink-600">Invoice</label>
           <input

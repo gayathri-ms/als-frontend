@@ -22,7 +22,7 @@ import Updateamt from "./components/updateamt";
 import Dis_inv from "./components/dis_inv";
 import Dis_comp from "./components/dis_comp";
 import Dis_vehicleNo from "./components/dis_vehicleNo";
-import Dis_date from "./components/display_date";
+import Dis_date from "./components/dis_date";
 
 const Apptest = () => {
   return (

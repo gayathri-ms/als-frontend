@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { isAuthenticated } from "../helper/auth";
+import { getallform } from "../helper/formHelper";
 
 const Dis_date = () => {
-    const [date, setDate] = useState("");
+  const [date, setDate] = useState("");
   const [forms, setForms] = useState([]);
   const [form, setForm] = useState([]);
   const [msg, setMsg] = useState("");
@@ -22,14 +24,13 @@ const Dis_date = () => {
   }, []);
 
   const onHandle = (e) => {
-    
     const date = new Date(e.target.value);
-  var dateObj = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    var dateObj = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
 
-  const month = dateObj.getMonth() + 1;
-  const day = String(dateObj.getDate()).padStart(2, "0");
-  const year = dateObj.getFullYear();
-  const output = day + "-" + month + "-" + year;
+    const month = dateObj.getMonth() + 1;
+    const day = String(dateObj.getDate()).padStart(2, "0");
+    const year = dateObj.getFullYear();
+    const output = day + "-" + month + "-" + year;
     const data = forms.filter(
       (c) => c.dateformat !== undefined && c.dateformat.indexOf(output) !== -1
     );
