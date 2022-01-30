@@ -14,6 +14,7 @@ const Signin = () => {
   const [redirect, setRedirect] = useState(false);
   const { email, password } = values;
   const onHandle = (name) => (e) => {
+    console.log(e.target.value)
     setValues({ ...values, [name]: e.target.value });
   };
   const onHandleSubmit = (e) => {
@@ -41,7 +42,7 @@ const Signin = () => {
       {/* <Sidebar /> */}
 
       <div
-        className="fixed z-10 -mt-24 inset-0 overflow-y-auto"
+        className="fixed z-10 -mt-10 inset-0 overflow-y-auto"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
