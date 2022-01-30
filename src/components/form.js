@@ -36,6 +36,7 @@ const Form = () => {
         ...values,
         company: detail[0].company_name,
         rate: detail[0].rate,
+        address: detail[0].address,
       });
     } else setValues({ ...values, [name]: e.target.value });
   };
@@ -78,6 +79,7 @@ const Form = () => {
           ...values,
           vehicle_no: "",
           company: "",
+          address: "",
           no_loads: 0,
           rate: 0,
           delivery: "in",

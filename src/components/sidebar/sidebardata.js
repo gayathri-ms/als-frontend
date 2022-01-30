@@ -79,6 +79,40 @@ export const SidebarData = [
     path: "/updateamount",
     icon: <IoIcons.IoMdPeople />,
   },
+  {
+    title: "Display Details",
+    path: "/",
+    icon: <IoIcons.IoMdPeople />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Invoice",
+        path: "/display_invoice",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Company Name",
+        path: "/display_comp",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Date",
+        path: "/phoneno",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Vehicle Number",
+        path: "/display_vehicle_no",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+    ],
+  },
   //   {
   //     title: "Messages",
   //     path: "/messages",

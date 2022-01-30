@@ -19,6 +19,9 @@ import Form from "./components/form";
 import Phoneno from "./components/phoneno";
 import Companyname from "./components/companyname";
 import Updateamt from "./components/updateamt";
+import Dis_inv from "./components/dis_inv";
+import Dis_comp from "./components/dis_comp";
+import Dis_vehicleNo from "./components/dis_vehicleNo";
 
 const Apptest = () => {
   return (
@@ -36,6 +39,9 @@ const Apptest = () => {
           <Route path="/phoneno" element={<Phoneno />} />
           <Route path="/companyname" element={<Companyname />} />
           <Route path="/updateamount" element={<Updateamt />} />
+          <Route path="/display_invoice" element={<Dis_inv />} />
+          <Route path="/display_comp" element={<Dis_comp />} />
+          <Route path="/display_vehicle_no" element={<Dis_vehicleNo />} />
         </Routes>
       </div>
     </Router>
