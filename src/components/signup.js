@@ -1,6 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import { authenticate, isAuthenticated, signup } from "../helper/auth";
+import { frontend } from "./variables";
 
 const Signup = () => {
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [msg, setMsg] = useState("");
+  const [redirect, setRedirect] = useState(false);
+  const { username, email, password } = values;
+  const onHandle = (name) => (e) => {
+    setValues({ ...values, [name]: e.target.value });
+  };
+  const performRedirect = () => {
+    window.location.reload(false);
+    // console.log("isAuthen", isAuthenticated());
+    if (isAuthenticated()) {
+      window.location.replace(`${frontend}login`);
+    }
+  };
+  const onHandleSubmit = (e) => {
+    e.preventDefault();
+    console.log("value", values);
+    signup(username, email, password)
+      .then((data) => {
+        if (data.err) {
+          setMsg(data.err);
+        }
+        authenticate(data, () => setRedirect(true));
+      })
+      .catch((err) => console.log(err));
+    setValues({ ...values, username: "", email: "", password: "" });
+  };
   return (
     <div>
       <div
@@ -39,14 +72,18 @@ const Signup = () => {
               </div>
             </div>
             <div>
-              <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
+              <form
+                onSubmit={onHandleSubmit}
+                className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+              >
                 <div className="mb-4">
                   <label className="block text-gray-700 text-lg font-bold mb-2">
                     Name
                   </label>
                   <input
+                    onChange={onHandle("username")}
+                    value={username}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
-                    id="username"
                     type="text"
                     placeholder="Username"
                   />
@@ -56,8 +93,9 @@ const Signup = () => {
                     Email
                   </label>
                   <input
+                    onChange={onHandle("email")}
+                    value={email}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
-                    id="username"
                     type="email"
                     placeholder="Username"
                   />
@@ -68,15 +106,16 @@ const Signup = () => {
                     Password
                   </label>
                   <input
+                    onChange={onHandle("password")}
+                    value={password}
                     className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight  focus:shadow-outline"
-                    id="password"
                     type="password"
                     placeholder="******************"
                   />
                 </div>
                 <div className="flex items-center justify-center">
                   <button
-                    type="button"
+                    type="submit"
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-600 text-lg font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-lg"
                   >
                     Sign Up
@@ -87,6 +126,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <div>{redirect ? <div>{performRedirect()}</div> : ""}</div>
     </div>
   );
 };
