@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { authenticate, isAuthenticated, signin } from "../helper/auth";
 import Sidebar from "./sidebar/sidebar";
+import { frontend } from "./variables";
 
 const Signin = () => {
   const [next, setNext] = useState(false);
@@ -32,7 +33,7 @@ const Signin = () => {
     window.location.reload(false);
     // console.log("isAuthen", isAuthenticated());
     if (isAuthenticated()) {
-      window.location.replace("http://localhost:3001/");
+      window.location.replace(`${frontend}`);
     }
   };
   return (

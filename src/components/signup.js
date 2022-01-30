@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { authenticate, isAuthenticated, signup } from "../helper/auth";
+import { frontend } from "./variables";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -17,7 +18,7 @@ const Signup = () => {
     window.location.reload(false);
     // console.log("isAuthen", isAuthenticated());
     if (isAuthenticated()) {
-      window.location.replace("http://localhost:3001/login");
+      window.location.replace(`${frontend}login`);
     }
   };
   const onHandleSubmit = (e) => {
