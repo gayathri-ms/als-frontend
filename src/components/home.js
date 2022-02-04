@@ -8,14 +8,16 @@ const Home = () => {
   const [msg, setMsg] = useState("");
   const users = isAuthenticated();
   useEffect(() => {
-    duedate(users.user, users.token).then((data) => {
-      if (data.err) {
-        setMsg(data.err);
-      }
-      // if (data.length === 0) setMsg("No Dues");
-      console.log("details>>", data);
-      setDetails(data);
-    });
+    if (isAuthenticated()) {
+      duedate(users.user, users.token).then((data) => {
+        if (data.err) {
+          setMsg(data.err);
+        }
+        // if (data.length === 0) setMsg("No Dues");
+        console.log("details>>", data);
+        setDetails(data);
+      });
+    }
   }, []);
   return (
     <div className="">

@@ -25,6 +25,8 @@ import Dis_vehicleNo from "./components/dis_vehicleNo";
 import Dis_date from "./components/dis_date";
 import Individual from "./components/individual";
 import Balanceamount from "./components/balanceamount";
+import Spares from "./components/sparesForm";
+import Dis_spare from "./components/dis_spare";
 
 const Apptest = () => {
   return (
@@ -48,6 +50,8 @@ const Apptest = () => {
           <Route path="/display_date" element={<Dis_date />} />
           <Route path="/individual_form" element={<Individual />} />
           <Route path="/balanceamount" element={<Balanceamount />} />
+          <Route path="/spareform" element={<Spares />} />
+          <Route path="/display_spare" element={<Dis_spare />} />
         </Routes>
       </div>
     </Router>

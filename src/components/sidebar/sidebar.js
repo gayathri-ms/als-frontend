@@ -65,7 +65,9 @@ const Sidebar = () => {
                     item.title === "Contact Details" ||
                     item.title === "Update Amount" ||
                     item.title === "Display Details" ||
-                    item.title === "Balance Details") &&
+                    item.title === "Balance Details" ||
+                    item.title === "Spares" ||
+                    item.title === "Display Spares") &&
                     isAuthenticated()) ||
                   item.title === "Home" ? (
                     <SubMenu item={item} />

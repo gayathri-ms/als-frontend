@@ -135,6 +135,16 @@ export const SidebarData = [
     path: "/balanceamount",
     icon: <IoIcons.IoMdPeople />,
   },
+  {
+    title: "Spares",
+    path: "/spareform",
+    icon: <IoIcons.IoMdPeople />,
+  },
+  {
+    title: "Display Spares",
+    path: "/display_spare",
+    icon: <IoIcons.IoMdPeople />,
+  },
   //   {
   //     title: "Messages",
   //     path: "/messages",
