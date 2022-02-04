@@ -85,7 +85,7 @@ const Dis_vehicleNo = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Company Name
+                        Company/Individual Name
                       </th>
                       <th
                         scope="col"

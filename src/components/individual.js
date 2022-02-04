@@ -4,7 +4,7 @@ import { getAllCompanies, getRate } from "../helper/companyHelper";
 import { createForm } from "../helper/formHelper";
 import { getAllVehicle } from "../helper/vehicleHelper";
 
-const Form = () => {
+const Individual = () => {
   const [values, setValues] = useState({
     vehicle_no: "",
     company: "",
@@ -39,19 +39,7 @@ const Form = () => {
 
   const onHandle = (name) => (e) => {
     console.log("name>>", name);
-    if (name === "company") {
-      const detail = companies.filter(
-        (data) => data.company_name === e.target.value
-      );
-      console.log("detail", detail);
-      setValues({
-        ...values,
-        company: detail[0].company_name,
-        rate: detail[0].rate,
-        address: detail[0].address,
-        phone_no: detail[0].phone,
-      });
-    } else setValues({ ...values, [name]: e.target.value });
+    setValues({ ...values, [name]: e.target.value });
   };
 
   useEffect(() => {
@@ -64,18 +52,6 @@ const Form = () => {
           setMsg("Add Vehicles");
         }
         setVehicles(data);
-      })
-      .catch((err) => console.log(err));
-
-    getAllCompanies(users.user, users.token)
-      .then((data) => {
-        if (data.err) {
-          setMsg(data.err);
-        }
-        if (data.length === 0) {
-          setMsg("Add Company");
-        }
-        setCompanies(data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -137,25 +113,46 @@ const Form = () => {
                   </select>
                 </div>
               </div>
+              <div className="md:flex">
+                <div className="mt-6 mr-5">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    onChange={onHandle("company")}
+                    value={company}
+                    placeholder="Name"
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+                <div className="mt-6 mr-5">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Phone No
+                  </label>
+                  <input
+                    type="text"
+                    onChange={onHandle("phone_no")}
+                    value={phone_no}
+                    placeholder="Phone No"
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+              </div>
               <div className="mb-6 mt-6 mr-5">
                 <label className=" mb-8 text-lg font-medium text-pink-600">
-                  Company Name
+                  Address
                 </label>
-                <select
-                  onChange={onHandle("company")}
-                  value={company}
-                  className="w-full ml-5 my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-black"
-                >
-                  <option>Select</option>
-                  {companies.map((company, index) => {
-                    return (
-                      <option key={index}>
-                        {company.company_name}
-                        {/* {setValues({ ...values, rate: company.rate })} */}
-                      </option>
-                    );
-                  })}
-                </select>
+                <input
+                  type="text"
+                  onChange={onHandle("address")}
+                  value={address}
+                  placeholder="Adress"
+                  required
+                  className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                />
               </div>
               <div className="md:flex">
                 <div className="mb-6 mr-5">
@@ -286,4 +283,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Individual;

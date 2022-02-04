@@ -49,8 +49,25 @@ export const SidebarData = [
   },
   {
     title: "Form",
-    path: "/form",
+    path: "/",
     icon: <IoIcons.IoMdPeople />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Company",
+        path: "/form",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Individual Name",
+        path: "/individual_form",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+    ],
   },
   {
     title: "Contact Details",
@@ -112,6 +129,11 @@ export const SidebarData = [
         cName: "sub-nav",
       },
     ],
+  },
+  {
+    title: "Balance Details",
+    path: "/balanceamount",
+    icon: <IoIcons.IoMdPeople />,
   },
   //   {
   //     title: "Messages",

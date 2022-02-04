@@ -4,3 +4,8 @@
   margin-top: 0.7em;
   background-color: white;
 }
+
+.my_sticky {
+  /* position: -webkit-sticky; */
+  position: fixed;
+}

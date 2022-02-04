@@ -19,9 +19,9 @@ const NavIcon = styled(Link)`
 
 const SidebarNav = styled.nav`
   width: 250px;
-  height: 100vh;
+  min-height: 100vh;
   box-shadow: 0px 3px 6px 3px #bd86ac, 0px 3px 6px 3px #e6b8d8;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 350ms;
@@ -42,7 +42,7 @@ const Sidebar = () => {
       <IconContext.Provider value={{ color: "black" }}>
         <Nav className="bg-white flex justify-start items-center">
           <NavIcon className="flex justify-start text-4xl items-center" to="#">
-            <FaIcons.FaBars onClick={showSidebar} />
+            <FaIcons.FaBars className="my_sticky" onClick={showSidebar} />
           </NavIcon>
         </Nav>
         <SidebarNav
@@ -64,7 +64,8 @@ const Sidebar = () => {
                     item.title === "Form" ||
                     item.title === "Contact Details" ||
                     item.title === "Update Amount" ||
-                    item.title === "Display Details") &&
+                    item.title === "Display Details" ||
+                    item.title === "Balance Details") &&
                     isAuthenticated()) ||
                   item.title === "Home" ? (
                     <SubMenu item={item} />

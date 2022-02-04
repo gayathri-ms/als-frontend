@@ -23,6 +23,8 @@ import Dis_inv from "./components/dis_inv";
 import Dis_comp from "./components/dis_comp";
 import Dis_vehicleNo from "./components/dis_vehicleNo";
 import Dis_date from "./components/dis_date";
+import Individual from "./components/individual";
+import Balanceamount from "./components/balanceamount";
 
 const Apptest = () => {
   return (
@@ -44,6 +46,8 @@ const Apptest = () => {
           <Route path="/display_comp" element={<Dis_comp />} />
           <Route path="/display_vehicle_no" element={<Dis_vehicleNo />} />
           <Route path="/display_date" element={<Dis_date />} />
+          <Route path="/individual_form" element={<Individual />} />
+          <Route path="/balanceamount" element={<Balanceamount />} />
         </Routes>
       </div>
     </Router>
