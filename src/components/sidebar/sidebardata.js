@@ -140,10 +140,44 @@ export const SidebarData = [
     path: "/spareform",
     icon: <IoIcons.IoMdPeople />,
   },
+
   {
-    title: "Display Spares",
-    path: "/display_spare",
+    title: "Diesel Form",
+    path: "/dieselform",
     icon: <IoIcons.IoMdPeople />,
+  },
+  {
+    title: "Two Wheeler",
+    path: "/petrolform",
+    icon: <IoIcons.IoMdPeople />,
+  },
+  {
+    title: "Display Maintanence",
+    path: "/",
+    icon: <IoIcons.IoMdPeople />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Display Spares",
+        path: "/display_spare",
+        icon: <IoIcons.IoMdPeople />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Display Diesel Details",
+        path: "/display_diesel",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Display Petrol Details",
+        path: "/display_petrol",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+    ],
   },
   //   {
   //     title: "Messages",

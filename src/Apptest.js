@@ -27,6 +27,10 @@ import Individual from "./components/individual";
 import Balanceamount from "./components/balanceamount";
 import Spares from "./components/sparesForm";
 import Dis_spare from "./components/dis_spare";
+import Diesel from "./components/diesel";
+import Dis_diesel from "./components/dis_diesel";
+import Petrol from "./components/petrol";
+import Dis_petrol from "./components/dis_petrol";
 
 const Apptest = () => {
   return (
@@ -52,6 +56,10 @@ const Apptest = () => {
           <Route path="/balanceamount" element={<Balanceamount />} />
           <Route path="/spareform" element={<Spares />} />
           <Route path="/display_spare" element={<Dis_spare />} />
+          <Route path="/dieselform" element={<Diesel />} />
+          <Route path="/display_diesel" element={<Dis_diesel />} />
+          <Route path="/petrolform" element={<Petrol />} />
+          <Route path="/display_petrol" element={<Dis_petrol />} />
         </Routes>
       </div>
     </Router>

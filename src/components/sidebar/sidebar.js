@@ -19,7 +19,6 @@ const NavIcon = styled(Link)`
 
 const SidebarNav = styled.nav`
   width: 250px;
-  min-height: 100vh;
   box-shadow: 0px 3px 6px 3px #bd86ac, 0px 3px 6px 3px #e6b8d8;
   position: absolute;
   top: 0;
@@ -46,12 +45,12 @@ const Sidebar = () => {
           </NavIcon>
         </Nav>
         <SidebarNav
-          className="bg-rose-300 flex justify-center text-fuchsia-900"
+          className="bg-rose-300 relative min-h-full h-fit flex justify-center text-fuchsia-900"
           sidebar={sidebar}
         >
           <SidebarWrap>
             <NavIcon
-              className="flex justify-start text-4xl items-center"
+              className="flex justify-end -mt-5 fixed left-44 top-3 text-2xl items-center"
               to="#"
             >
               <AiIcons.AiOutlineClose onClick={showSidebar} />
@@ -67,7 +66,9 @@ const Sidebar = () => {
                     item.title === "Display Details" ||
                     item.title === "Balance Details" ||
                     item.title === "Spares" ||
-                    item.title === "Display Spares") &&
+                    item.title === "Diesel Form" ||
+                    item.title === "Two Wheeler" ||
+                    item.title === "Display Maintanence") &&
                     isAuthenticated()) ||
                   item.title === "Home" ? (
                     <SubMenu item={item} />
