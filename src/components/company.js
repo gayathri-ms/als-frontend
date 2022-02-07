@@ -22,7 +22,7 @@ const Company = () => {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    console.log("value", values);
+    // console.log("value", values);
     createCompany(values, users.user, users.token)
       .then((data) => {
         if (data.err) {

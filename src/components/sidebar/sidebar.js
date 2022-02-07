@@ -45,16 +45,20 @@ const Sidebar = () => {
           </NavIcon>
         </Nav>
         <SidebarNav
-          className="bg-rose-300 relative min-h-full h-fit flex justify-center text-fuchsia-900"
+          className="bg-rose-300 py-10 relative min-h-full h-fit flex justify-center text-fuchsia-900"
           sidebar={sidebar}
         >
           <SidebarWrap>
-            <NavIcon
-              className="flex justify-end -mt-5 fixed left-44 top-3 text-2xl items-center"
-              to="#"
-            >
-              <AiIcons.AiOutlineClose onClick={showSidebar} />
-            </NavIcon>
+            {sidebar ? (
+              <NavIcon
+                className="flex justify-end -mt-5 fixed left-44 top-3 text-2xl items-center"
+                to="#"
+              >
+                <AiIcons.AiOutlineClose onClick={showSidebar} />
+              </NavIcon>
+            ) : (
+              ""
+            )}
             {SidebarData.map((item, index) => {
               return (
                 <div key={index}>
@@ -68,6 +72,8 @@ const Sidebar = () => {
                     item.title === "Spares" ||
                     item.title === "Diesel Form" ||
                     item.title === "Two Wheeler" ||
+                    item.title === "Insurance" ||
+                    item.title === "FC Detils" ||
                     item.title === "Display Maintanence") &&
                     isAuthenticated()) ||
                   item.title === "Home" ? (

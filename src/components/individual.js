@@ -38,7 +38,7 @@ const Individual = () => {
   const [msg, setMsg] = useState("");
 
   const onHandle = (name) => (e) => {
-    console.log("name>>", name);
+    // console.log("name>>", name);
     setValues({ ...values, [name]: e.target.value });
   };
 
@@ -58,7 +58,7 @@ const Individual = () => {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    console.log("values", values);
+    // console.log("values", values);
     if (company !== "" && vehicle_no !== "" && no_loads !== 0) {
       createForm(values, users.user, users.token).then((data) => {
         if (data.err) {

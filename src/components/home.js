@@ -14,7 +14,7 @@ const Home = () => {
           setMsg(data.err);
         }
         // if (data.length === 0) setMsg("No Dues");
-        console.log("details>>", data);
+        // console.log("details>>", data);
         setDetails(data);
       });
     }

@@ -177,7 +177,29 @@ export const SidebarData = [
         icon: <IoIcons.IoIosPaper />,
         cName: "sub-nav",
       },
+      {
+        title: "Display Insurance Details",
+        path: "/display_insurance",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Display FC Details",
+        path: "/display_fc",
+        icon: <IoIcons.IoIosPaper />,
+        cName: "sub-nav",
+      },
     ],
+  },
+  {
+    title: "Insurance",
+    path: "/insurance_form",
+    icon: <IoIcons.IoMdPeople />,
+  },
+  {
+    title: "FC Detils",
+    path: "/fc_form",
+    icon: <IoIcons.IoMdPeople />,
   },
   //   {
   //     title: "Messages",

@@ -9,9 +9,9 @@ const SidebarLink = styled(Link)`
   align-items: center;
   padding: 20px;
   list-style: none;
-  height: 60px;
+  height: 50px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   &:hover {
     background: orange;
     border-left: 4px solid #632ce4;
@@ -25,13 +25,13 @@ const SidebarLabel = styled.span`
 
 const DropdownLink = styled(Link)`
   background: transparent;
-  height: 60px;
+  height: 50px;
   padding-left: 3rem;
   display: flex;
   align-items: center;
   text-decoration: none;
   color: #5e0b63;
-  font-size: 18px;
+  font-size: 16px;
   &:hover {
     background: orange;
     border-left: 4px solid #632ce4;

@@ -23,7 +23,7 @@ const Signup = () => {
   };
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    console.log("value", values);
+    // console.log("value", values);
     signup(username, email, password)
       .then((data) => {
         if (data.err) {

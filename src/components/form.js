@@ -38,12 +38,12 @@ const Form = () => {
   const [msg, setMsg] = useState("");
 
   const onHandle = (name) => (e) => {
-    console.log("name>>", name);
+    // console.log("name>>", name);
     if (name === "company") {
       const detail = companies.filter(
         (data) => data.company_name === e.target.value
       );
-      console.log("detail", detail);
+      // console.log("detail", detail);
       setValues({
         ...values,
         company: detail[0].company_name,
@@ -82,7 +82,7 @@ const Form = () => {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    console.log("values", values);
+    // console.log("values", values);
     if (company !== "" && vehicle_no !== "" && no_loads !== 0) {
       createForm(values, users.user, users.token).then((data) => {
         if (data.err) {

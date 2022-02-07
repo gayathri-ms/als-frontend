@@ -18,7 +18,7 @@ const Vehicle = () => {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    console.log("values", values);
+    // console.log("values", values);
     createVehicle(values, users.user, users.token)
       .then((data) => {
         if (data.err) {

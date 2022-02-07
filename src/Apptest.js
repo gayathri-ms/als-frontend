@@ -31,6 +31,10 @@ import Diesel from "./components/diesel";
 import Dis_diesel from "./components/dis_diesel";
 import Petrol from "./components/petrol";
 import Dis_petrol from "./components/dis_petrol";
+import Insurance from "./components/insurance";
+import Fc from "./components/fc";
+import Dis_insurance from "./components/dis_insurance";
+import Dis_fc from "./components/dis_fc";
 
 const Apptest = () => {
   return (
@@ -60,6 +64,10 @@ const Apptest = () => {
           <Route path="/display_diesel" element={<Dis_diesel />} />
           <Route path="/petrolform" element={<Petrol />} />
           <Route path="/display_petrol" element={<Dis_petrol />} />
+          <Route path="/insurance_form" element={<Insurance />} />
+          <Route path="/fc_form" element={<Fc />} />
+          <Route path="/display_insurance" element={<Dis_insurance />} />
+          <Route path="/display_fc" element={<Dis_fc />} />
         </Routes>
       </div>
     </Router>

@@ -33,11 +33,11 @@ const Dis_diesel = () => {
     const day = String(dateObj.getDate()).padStart(2, "0");
     const year = dateObj.getFullYear();
     const output = day + "-" + month + "-" + year;
-    console.log("date", output);
+    // console.log("date", output);
     const data = forms.filter(
       (c) => c.dateFormat !== undefined && c.dateFormat.indexOf(output) !== -1
     );
-    console.log("data", data);
+    // console.log("data", data);
 
     setForm(data);
     setDate(e.target.value);

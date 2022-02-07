@@ -18,10 +18,10 @@ const Sample = () => {
   };
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    console.log("value", values);
+    // console.log("value", values);
     signin(values)
       .then((data) => {
-        console.log("data", data);
+        // console.log("data", data);
         if (data.err) {
           setMsg(data.err);
           setValues({ ...values, email: "", password: "" });
