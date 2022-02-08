@@ -197,9 +197,30 @@ export const SidebarData = [
     icon: <IoIcons.IoMdPeople />,
   },
   {
-    title: "FC Detils",
+    title: "FC Details",
     path: "/fc_form",
     icon: <IoIcons.IoMdPeople />,
+  },
+  {
+    title: "Labour",
+    path: "/labour_form",
+    icon: <IoIcons.IoMdPeople />,
+  },
+  {
+    title: "Display Labour",
+    path: "/",
+    icon: <IoIcons.IoMdPeople />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Labour",
+        path: "/display_labour",
+        icon: <IoIcons.IoMdPeople />,
+        cName: "sub-nav",
+      },
+    ],
   },
   //   {
   //     title: "Messages",

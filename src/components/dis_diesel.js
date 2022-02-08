@@ -5,6 +5,7 @@ import { getAllDiesel } from "../helper/dieselHelper";
 
 const Dis_diesel = () => {
   const [date, setDate] = useState("");
+  const [vehicle, setVehicle] = useState("");
   const [forms, setForms] = useState([]);
   const [form, setForm] = useState([]);
   const [msg, setMsg] = useState("");
@@ -43,21 +44,55 @@ const Dis_diesel = () => {
     setDate(e.target.value);
   };
 
+  const onHandle2 = (e) => {
+    const data = forms.filter(
+      (c) =>
+        c.vehicle_no !== undefined &&
+        c.vehicle_no.indexOf(e.target.value) !== -1
+    );
+    setForm(data);
+    setVehicle(e.target.value);
+  };
+
   return (
     <div className="flex flex-col">
-      <form>
-        <div className="w-3/4 md:w-80 flex flex-col mx-auto">
-          <label className=" text-xl font-medium text-pink-600">Date</label>
-          <input
-            type="date"
-            onChange={onHandle}
-            placeholder="dd/mm/yyyy"
-            value={date}
-            required
-            className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-          />
-        </div>
-      </form>
+      <div className=" mx-auto">
+        <form>
+          <div className="md:flex ">
+            <div className="mb-6 mr-5">
+              <label className=" mb-8 text-lg font-medium text-pink-600">
+                Date
+              </label>
+
+              {/* <div className="w-3/4 md:w-80 flex flex-col mx-auto"> */}
+              {/* <label className=" text-xl font-medium text-pink-600">Date</label> */}
+              <input
+                type="date"
+                onChange={onHandle}
+                placeholder="dd/mm/yyyy"
+                value={date}
+                required
+                className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+              />
+            </div>
+            {/* <div>haaaaaaaaaa</div> */}
+
+            <div className="mb-6 mr-5">
+              <label className=" mb-8 text-lg font-medium text-pink-600">
+                Vehicle No
+              </label>
+              <input
+                type="text"
+                onChange={onHandle2}
+                placeholder="Vehicle"
+                value={vehicle}
+                required
+                className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
 
       <div className="text-center mb-5">
         <div className="font-medium mt-5 text-center text-2xl text-red-700">

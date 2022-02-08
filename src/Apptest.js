@@ -35,6 +35,8 @@ import Insurance from "./components/insurance";
 import Fc from "./components/fc";
 import Dis_insurance from "./components/dis_insurance";
 import Dis_fc from "./components/dis_fc";
+import Labour_form from "./components/labour_form";
+import Dis_labour from "./components/dis_labour";
 
 const Apptest = () => {
   return (
@@ -68,6 +70,8 @@ const Apptest = () => {
           <Route path="/fc_form" element={<Fc />} />
           <Route path="/display_insurance" element={<Dis_insurance />} />
           <Route path="/display_fc" element={<Dis_fc />} />
+          <Route path="/labour_form" element={<Labour_form />} />
+          <Route path="/display_labour" element={<Dis_labour />} />
         </Routes>
       </div>
     </Router>

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../helper/auth";
-import { getAllPetrol } from "../helper/petrolHelper";
+import { getAllLabour } from "../helper/labourHelper";
 
-const Dis_petrol = () => {
-  const [date, setDate] = useState("");
-  const [vehicle, setVehicle] = useState("");
+const Dis_labour = () => {
+  const [labour, setLabour] = useState("");
   const [forms, setForms] = useState([]);
   const [form, setForm] = useState([]);
   const [msg, setMsg] = useState("");
@@ -12,12 +11,11 @@ const Dis_petrol = () => {
   const users = isAuthenticated();
 
   useEffect(() => {
-    getAllPetrol(users.user, users.token)
+    getAllLabour(users.user, users.token)
       .then((data) => {
         if (data.err) {
           setMsg(data.err);
         }
-        // console.log(data);
         setForms(data);
         data.sort((a, b) => parseFloat(b.invoice) - parseFloat(a.invoice));
         setForm(data);
@@ -26,70 +24,33 @@ const Dis_petrol = () => {
   }, []);
 
   const onHandle = (e) => {
-    const date = new Date(e.target.value);
-    var dateObj = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-
-    const month = dateObj.getMonth() + 1;
-    const day = String(dateObj.getDate()).padStart(2, "0");
-    const year = dateObj.getFullYear();
-    const output = day + "-" + month + "-" + year;
-    // console.log("date", output);
     const data = forms.filter(
-      (c) => c.dateFormat !== undefined && c.dateFormat.indexOf(output) !== -1
+      (c) =>
+        c.labour_name !== undefined && c.company.indexOf(e.target.value) !== -1
     );
     // console.log("data", data);
 
     setForm(data);
-    setDate(e.target.value);
-  };
-
-  const onHandle2 = (e) => {
-    const data = forms.filter(
-      (c) =>
-        c.vehicle_no !== undefined &&
-        c.vehicle_no.indexOf(e.target.value) !== -1
-    );
-    setForm(data);
-    setVehicle(e.target.value);
+    setLabour(e.target.value);
   };
 
   return (
     <div className="flex flex-col">
-      <div className=" mx-auto">
-        <form>
-          <div className="md:flex ">
-            <div className="mb-6 mr-5">
-              <label className=" mb-8 text-lg font-medium text-pink-600">
-                Date
-              </label>
-
-              <input
-                type="date"
-                onChange={onHandle}
-                placeholder="dd/mm/yyyy"
-                value={date}
-                required
-                className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-              />
-            </div>
-
-            <div className="mb-6 mr-5">
-              <label className=" mb-8 text-lg font-medium text-pink-600">
-                Vehicle No
-              </label>
-              <input
-                type="text"
-                onChange={onHandle2}
-                placeholder="Vehicle"
-                value={vehicle}
-                required
-                className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-              />
-            </div>
-          </div>
-        </form>
+      {/* <form> */}
+      <div className="w-3/4 md:w-80 flex flex-col mx-auto">
+        <label className=" text-xl font-medium text-pink-600">
+          Labour Name
+        </label>
+        <input
+          type="text"
+          onChange={onHandle}
+          placeholder="Labour Name"
+          value={labour}
+          required
+          className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+        />
       </div>
-
+      {/* </form> */}
       <div className="text-center mb-5">
         <div className="font-medium mt-5 text-center text-2xl text-red-700">
           {msg}
@@ -109,7 +70,24 @@ const Dis_petrol = () => {
                       >
                         Invoice
                       </th>
-
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
+                        Name
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
+                        Phone
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
+                        Address
+                      </th>
                       <th
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
@@ -120,71 +98,44 @@ const Dis_petrol = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Rate
+                        Advance
                       </th>
                       <th
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Vehicle number
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                      >
-                        Number of ltrs
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                      >
-                        Total
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                      >
-                        Present Km
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                      >
-                        KM per ltr
+                        Salary
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {form.map((petrol, index) => {
+                    {form.map((com, index) => {
                       return (
                         <tr
                           key={index}
                           className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                         >
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {petrol.invoice}
+                            {com.invoice}
+                          </td>
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {com.labour_name}
                           </td>
 
                           <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
-                            {petrol.dateFormat}
+                            {com.phone}
                           </td>
                           <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
-                            {petrol.rate}
+                            {com.address}
+                          </td>
+                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                            {com.joined_date}
+                          </td>
+                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                            {com.adv_amt}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {petrol.vehicle_no}
-                          </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {petrol.no_ltrs}
-                          </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {petrol.total_amt}
-                          </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {petrol.present_km}
-                          </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {petrol.kmpl}
+                            {com.salary}
                           </td>
                         </tr>
                       );
@@ -203,4 +154,4 @@ const Dis_petrol = () => {
   );
 };
 
-export default Dis_petrol;
+export default Dis_labour;

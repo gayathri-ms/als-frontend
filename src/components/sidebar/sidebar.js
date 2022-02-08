@@ -73,7 +73,9 @@ const Sidebar = () => {
                     item.title === "Diesel Form" ||
                     item.title === "Two Wheeler" ||
                     item.title === "Insurance" ||
-                    item.title === "FC Detils" ||
+                    item.title === "FC Details" ||
+                    item.title === "Labour" ||
+                    item.title === "Display Labour" ||
                     item.title === "Display Maintanence") &&
                     isAuthenticated()) ||
                   item.title === "Home" ? (
