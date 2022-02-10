@@ -207,6 +207,11 @@ export const SidebarData = [
     icon: <IoIcons.IoMdPeople />,
   },
   {
+    title: "Attendance",
+    path: "/attendance",
+    icon: <IoIcons.IoMdPeople />,
+  },
+  {
     title: "Display Labour",
     path: "/",
     icon: <IoIcons.IoMdPeople />,
