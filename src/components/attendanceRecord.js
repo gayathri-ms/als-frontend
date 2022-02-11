@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { isAuthenticated } from "../helper/auth";
 import { MdOutlineEdit } from "react-icons/md";
-import { addAttendance } from "../helper/attendanceHelper";
+import { addAttendance, getByDate } from "../helper/attendanceHelper";
 
 const A_record = ({ com }) => {
   const [isedit, setIsedit] = useState(false);
@@ -50,6 +50,31 @@ const A_record = ({ com }) => {
       setIsedit(!isedit);
     }
   };
+
+  useEffect(() => {
+    getByDate(users.user, users.token).then((data) => {
+      if (data.err) {
+        setMsg(data.err);
+      }
+      // console.log("data", data);
+      if (data.length !== 0) {
+        let filtered_data = data.filter((d) => d.lab_id === l_id);
+        if (filtered_data.length !== 0) {
+          // console.log("fil_data", filtered_data[0]);
+
+          setDetails({
+            ...details,
+            labour_name: filtered_data[0].labour,
+            l_id: l_id,
+            present: filtered_data[0].present,
+            shift_time: filtered_data[0].shift_time,
+            extras: filtered_data[0].extras,
+          });
+          setNext(true);
+        }
+      }
+    });
+  }, []);
 
   return (
     <tr

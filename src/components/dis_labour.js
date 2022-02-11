@@ -135,7 +135,7 @@ const Dis_labour = () => {
                             {com.adv_amt}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {com.salary}
+                            {com.salary_work}
                           </td>
                         </tr>
                       );

@@ -16,6 +16,21 @@ export const addAttendance = (form, user, token) => {
     .catch((error) => console.log(error));
 };
 
+export const getByDate = (user, token) => {
+  return fetch(`${API}/attendance/getbydate/${user._id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
+
 export const getAllAttendance = (user, token) => {
   return fetch(`${API}/attendance/getall/${user._id}`, {
     method: "GET",

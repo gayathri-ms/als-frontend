@@ -8,6 +8,7 @@ import { getAllVehicle } from "../helper/vehicleHelper";
 const Labour_form = () => {
   const [values, setValues] = useState({
     labour_name: "",
+    l_id: "",
     address: "",
     adv_amt: 0,
     advance: "",
@@ -15,7 +16,8 @@ const Labour_form = () => {
     salary: 0,
   });
 
-  const { labour_name, address, adv_amt, advance, phone, salary } = values;
+  const { labour_name, l_id, address, adv_amt, advance, phone, salary } =
+    values;
 
   const users = isAuthenticated();
   const [msg, setMsg] = useState("");
@@ -29,6 +31,7 @@ const Labour_form = () => {
     // console.log("values", values);
     if (
       labour_name !== "" &&
+      l_id !== "" &&
       advance !== "" &&
       address !== "" &&
       salary !== 0
@@ -40,6 +43,7 @@ const Labour_form = () => {
         setValues({
           ...values,
           labour_name: "",
+          l_id: "",
           address: "",
           adv_amt: 0,
           advance: "",
@@ -53,6 +57,7 @@ const Labour_form = () => {
       if (address === "") setMsg("Fill the address of the labour");
       if (salary === 0) setMsg("Fill the Salary");
       if (advance === "") setMsg("Select the advance");
+      if (l_id === "") setMsg("Select the Labour id");
     }
   };
 
@@ -62,6 +67,21 @@ const Labour_form = () => {
         <div className="max-w-2xl p-5 mx-auto my-10 bg-white rounded-md shadow-sm">
           <div>
             <form onSubmit={onHandleSubmit}>
+              <div className="md:flex">
+                <div className="mb-6 mr-5">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Labour Id
+                  </label>
+                  <input
+                    type="text"
+                    onChange={onHandle("l_id")}
+                    value={l_id}
+                    placeholder="Labour Id"
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+              </div>
               <div className="md:flex">
                 <div className="mb-6 mr-5">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
