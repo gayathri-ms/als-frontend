@@ -1,7 +1,5 @@
-// import { API } from "../backend";
-const API = "http://localhost:3000";
-
-// const { user, token } = isAuthenticated();
+// const API = "http://localhost:3000";
+import { API } from "../components/variables";
 
 export const createLabour = (form, user, token) => {
   return fetch(`${API}/labour/addlabour/${user._id}`, {

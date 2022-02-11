@@ -1,6 +1,6 @@
-// import { API } from "../backend";
+import { API } from "../components/variables";
 
-const API = "http://localhost:3000";
+// const API = "http://localhost:3000";
 
 export const createForm = (form, user, token) => {
   return fetch(`${API}/load/addload/${user._id}`, {

@@ -1,7 +1,5 @@
-// import { API } from "../backend";
-const API = "http://localhost:3000";
-
-// const { user, token } = isAuthenticated();
+// const API = "http://localhost:3000";
+import { API } from "../components/variables";
 
 export const createFc = (form, user, token) => {
   return fetch(`${API}/fc/addFC/${user._id}`, {

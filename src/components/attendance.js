@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../helper/auth";
 import { getAllLabour } from "../helper/labourHelper";
-import { MdOutlineEdit } from "react-icons/md";
+import A_record from "./attendanceRecord";
 
 const Attendance = () => {
   //   const [company, setCompany] = useState("");
   const [forms, setForms] = useState([]);
   const [form, setForm] = useState([]);
   const [msg, setMsg] = useState("");
+
+  const [isEdit, setIsedit] = useState(false);
 
   const users = isAuthenticated();
 
@@ -72,53 +74,7 @@ const Attendance = () => {
                   </thead>
                   <tbody>
                     {form.map((com, index) => {
-                      return (
-                        <tr
-                          key={index}
-                          className="bg-white  border-b dark:bg-gray-800 dark:border-gray-700"
-                        >
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {com.l_id}
-                          </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {com.labour_name}
-                          </td>
-
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <select
-                              // onChange={onHandle("vehicle_no")}
-                              // value={vehicle_no}
-                              className="w-full pointer-events-none bg-gray-100 md:mt-4 px-3 py-2 placeholder-gray-200 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                            >
-                              <option value="">Select</option>
-                              <option value="present">Present</option>
-                              <option value="absent">Absent</option>
-                            </select>
-                          </td>
-                          <td className="py-4 px-6  text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <select
-                              // onChange={onHandle("vehicle_no")}
-                              // value={vehicle_no}
-                              className="w-full pointer-events-none bg-gray-100 md:mt-4 px-3 py-2 placeholder-gray-200 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                            >
-                              <option value="">Select</option>
-                              <option value="day">Day</option>
-                              <option value="night">Night</option>
-                            </select>
-                          </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            -
-                          </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <button className="btn flex  border-2 pr-2 pl-3  py-1  rounded hover:bg-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                              <span className="mr-2 py-1">
-                                <MdOutlineEdit />
-                              </span>
-                              <span>Edit</span>
-                            </button>
-                          </td>
-                        </tr>
-                      );
+                      return <A_record com={com} key={index} />;
                     })}
                   </tbody>
                 </table>

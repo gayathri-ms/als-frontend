@@ -1,7 +1,5 @@
-// import { API } from "../backend";
-const API = "http://localhost:3000";
-
-// const { user, token } = isAuthenticated();
+import { API } from "../components/variables";
+// const API = "http://localhost:3000";
 
 export const createInsurance = (form, user, token) => {
   return fetch(`${API}/insurance/addinsurance/${user._id}`, {
