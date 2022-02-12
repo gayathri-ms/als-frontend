@@ -6,7 +6,8 @@ import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./sidebardata";
 import SubMenu from "./submenu";
 import { IconContext } from "react-icons/lib";
-import { isAuthenticated } from "../../helper/auth";
+import { isAuthenticated, signout } from "../../helper/auth";
+import { frontend } from "../variables";
 
 const Nav = styled.div`
   height: 80px;
@@ -34,16 +35,36 @@ const SidebarWrap = styled.div`
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
 
+  const users = isAuthenticated();
+
   const showSidebar = () => setSidebar(!sidebar);
+  const performRedirect = () => {
+    window.location.reload(false);
+    window.location.replace(`${frontend}`);
+  };
+  const handleChange = () => {
+    signout(() => performRedirect());
+  };
 
   return (
     <>
       <IconContext.Provider value={{ color: "black" }}>
-        <Nav className="bg-white flex justify-start items-center">
+        <Nav className="bg-gray-100 fixed top-0 left-0 right-0 w-full flex justify-start items-center">
           <NavIcon className="flex justify-start text-4xl items-center" to="#">
             <FaIcons.FaBars className="my_sticky" onClick={showSidebar} />
+            {isAuthenticated() ? (
+              <button
+                onClick={handleChange}
+                className="fixed top-4 right-10 text-xl border-2 p-2 rounded-md border-transparent shadow-sm px-4 py-2 bg-pink-500 text-lg font-medium text-white hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-700 sm:ml-3 sm:w-auto sm:text-lg"
+              >
+                Logout
+              </button>
+            ) : (
+              ""
+            )}
           </NavIcon>
         </Nav>
+
         <SidebarNav
           className="bg-rose-300 py-10 relative min-h-full h-fit flex justify-center text-fuchsia-900"
           sidebar={sidebar}

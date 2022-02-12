@@ -1,3 +1,6 @@
+body {
+  margin: 0 5px;
+}
 .my_dropdown {
   width: 300px;
   padding: 0.7em;

@@ -56,7 +56,8 @@ const A_record = ({ com }) => {
       if (data.err) {
         setMsg(data.err);
       }
-      // console.log("data", data);
+      console.log("data", data);
+      // console.log()
       if (data.length !== 0) {
         let filtered_data = data.filter((d) => d.lab_id === l_id);
         if (filtered_data.length !== 0) {

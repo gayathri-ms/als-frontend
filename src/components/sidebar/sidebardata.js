@@ -225,6 +225,12 @@ export const SidebarData = [
         icon: <IoIcons.IoMdPeople />,
         cName: "sub-nav",
       },
+      {
+        title: "Attendance - Datewise",
+        path: "/display_attendance",
+        icon: <IoIcons.IoMdPeople />,
+        cName: "sub-nav",
+      },
     ],
   },
   //   {

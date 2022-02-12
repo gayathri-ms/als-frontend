@@ -38,13 +38,14 @@ import Dis_fc from "./components/dis_fc";
 import Labour_form from "./components/labour_form";
 import Dis_labour from "./components/dis_labour";
 import Attendance from "./components/attendance";
+import Dis_attendance from "./components/dis_attendance";
 
 const Apptest = () => {
   return (
     <Router>
       {/* <Header /> */}
       <Sidebar />
-      <div>
+      <div className="mt-28">
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/login" exact element={<Signin />} />
@@ -74,6 +75,7 @@ const Apptest = () => {
           <Route path="/labour_form" element={<Labour_form />} />
           <Route path="/display_labour" element={<Dis_labour />} />
           <Route path="/attendance" element={<Attendance />} />
+          <Route path="/display_attendance" element={<Dis_attendance />} />
         </Routes>
       </div>
     </Router>
