@@ -3,7 +3,7 @@ import { isAuthenticated } from "../helper/auth";
 import { MdOutlineEdit } from "react-icons/md";
 import { addAttendance, getByDate } from "../helper/attendanceHelper";
 
-const A_record = ({ com }) => {
+const A_record = ({ com, setMsg }) => {
   const [isedit, setIsedit] = useState(false);
   const users = isAuthenticated();
   const [details, setDetails] = useState({
@@ -32,20 +32,24 @@ const A_record = ({ com }) => {
     } else setDetails({ ...details, [name]: e.target.value });
   };
 
-  const [msg, setMsg] = useState("");
+  // const [msg, setMsg] = useState("");
   const [next, setNext] = useState(false);
 
   const onSubmit = () => {
     if (isedit) {
-      addAttendance(details, users.user, users.token)
-        .then((data) => {
-          if (data.err) {
-            setMsg(data.err);
-          }
-        })
-        .catch((err) => console.log(err));
-      setIsedit(!isedit);
-      setNext(true);
+      if (present !== "") {
+        addAttendance(details, users.user, users.token)
+          .then((data) => {
+            if (data.err) {
+              setMsg(data.err);
+            }
+          })
+          .catch((err) => console.log(err));
+        setIsedit(!isedit);
+        setNext(true);
+      } else {
+        setMsg("Enter whether the labour is present or not");
+      }
     } else {
       setIsedit(!isedit);
     }

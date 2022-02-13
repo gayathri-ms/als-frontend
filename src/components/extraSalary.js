@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { isAuthenticated } from "../helper/auth";
 import { getAllCompanies, getRate } from "../helper/companyHelper";
+import { createExtras } from "../helper/extrasHelper";
 import { createForm } from "../helper/formHelper";
 import { getAllVehicle } from "../helper/vehicleHelper";
 import Ind_extra_salary from "./ind_extra_salary";
@@ -51,8 +52,8 @@ const ExtraSalary = () => {
   const onHandleSubmit = (e) => {
     e.preventDefault();
     // console.log("values", values);
-    if (vehicle_no !== "" && no_loads !== 0) {
-      createForm(values, users.user, users.token).then((data) => {
+    if (vehicle_no !== "" && no_loads !== 0 && no_labour !== 0) {
+      createExtras(values, users.user, users.token).then((data) => {
         if (data.err) {
           setMsg(data.err);
         }
@@ -68,6 +69,7 @@ const ExtraSalary = () => {
     } else {
       if (vehicle_no === "") setMsg("Fill the Vehicle Number");
       if (no_loads === 0) setMsg("Fill the total number of Loads");
+      if (no_labour === 0) setMsg("Fill the total number of Labours");
     }
   };
 
@@ -159,6 +161,7 @@ const ExtraSalary = () => {
                                 return (
                                   <Ind_extra_salary
                                     key={i}
+                                    index={i}
                                     values={values}
                                     setValues={setValues}
                                     laboursArray={laboursArray}
@@ -182,6 +185,19 @@ const ExtraSalary = () => {
                   Add Company
                 </button>
               </div> */}
+              <div className="text-center mt-8">
+                {laboursArray.length === Number(no_labour) ? (
+                  <button
+                    type="submit"
+                    className="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-500 text-lg font-medium text-white hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-700 sm:ml-3 sm:w-auto sm:text-lg"
+                  >
+                    Add
+                  </button>
+                ) : (
+                  ""
+                )}
+              </div>
+              {console.log(values)}
             </form>
             <div>
               {msg === "Added Successfully" ? (

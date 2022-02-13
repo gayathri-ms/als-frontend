@@ -75,7 +75,7 @@ const Attendance = () => {
                   </thead>
                   <tbody>
                     {form.map((com, index) => {
-                      return <A_record com={com} key={index} />;
+                      return <A_record com={com} setMsg={setMsg} key={index} />;
                     })}
                   </tbody>
                 </table>
@@ -84,6 +84,8 @@ const Attendance = () => {
           </div>
         </div>
       </div>
+      <div className="text-xl text-red-500 font-medium text-center">{msg}</div>
+
       <div className="text-center mt-8 font-medium text-red-600 text-xl ">
         {form.length === 0 ? "No Details Found" : ""}{" "}
       </div>
