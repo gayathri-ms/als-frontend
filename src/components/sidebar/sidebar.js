@@ -98,6 +98,7 @@ const Sidebar = () => {
                     item.title === "Labour" ||
                     item.title === "Display Labour" ||
                     item.title === "Attendance" ||
+                    item.title === "Extras" ||
                     item.title === "Display Maintanence") &&
                     isAuthenticated()) ||
                   item.title === "Home" ? (

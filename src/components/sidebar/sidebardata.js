@@ -212,6 +212,11 @@ export const SidebarData = [
     icon: <IoIcons.IoMdPeople />,
   },
   {
+    title: "Extras",
+    path: "/extrasalary",
+    icon: <IoIcons.IoMdPeople />,
+  },
+  {
     title: "Display Labour",
     path: "/",
     icon: <IoIcons.IoMdPeople />,

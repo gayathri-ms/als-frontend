@@ -39,6 +39,7 @@ import Labour_form from "./components/labour_form";
 import Dis_labour from "./components/dis_labour";
 import Attendance from "./components/attendance";
 import Dis_attendance from "./components/dis_attendance";
+import ExtraSalary from "./components/extraSalary";
 
 const Apptest = () => {
   return (
@@ -76,6 +77,7 @@ const Apptest = () => {
           <Route path="/display_labour" element={<Dis_labour />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/display_attendance" element={<Dis_attendance />} />
+          <Route path="/extrasalary" element={<ExtraSalary />} />
         </Routes>
       </div>
     </Router>
