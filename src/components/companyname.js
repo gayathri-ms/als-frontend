@@ -60,13 +60,13 @@ const Companyname = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Phone Number
+                        Company Name
                       </th>
                       <th
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Company Name
+                        Phone Number
                       </th>
                       <th
                         scope="col"
@@ -92,11 +92,11 @@ const Companyname = () => {
                           key={index}
                           className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                         >
+                          <td className="py-4 px-6 text-lg font-bold capitalize text-gray-900 whitespace-nowrap dark:text-gray-400">
+                            {com.company_name}
+                          </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.phone}
-                          </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
-                            {com.company_name}
                           </td>
                           <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
                             {com.rate}

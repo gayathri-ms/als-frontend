@@ -103,14 +103,15 @@ const Dis_attendance = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Invoice
+                        S.NO
                       </th>
                       <th
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Date
+                        Labour Name
                       </th>
+
                       <th
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
@@ -121,7 +122,7 @@ const Dis_attendance = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Labour Name
+                        Date
                       </th>
                       <th
                         scope="col"
@@ -153,22 +154,23 @@ const Dis_attendance = () => {
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.invoice}
                           </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
-                            {com.date}
-                          </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
-                            {com.lab_id}
-                          </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-medium text-black capitalize whitespace-nowrap dark:text-gray-400">
                             {com.labour}
                           </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-md font-medium text-black  whitespace-nowrap dark:text-gray-400">
+                            {com.lab_id}
+                          </td>
+                          <td className="py-4 px-6 text-md font-medium text-black  whitespace-nowrap dark:text-gray-400">
+                            {com.date}
+                          </td>
+
+                          <td className="py-4 px-6 text-md  font-medium text-black  whitespace-nowrap dark:text-white">
                             {com.present}
                           </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-md font-medium text-black  whitespace-nowrap dark:text-white">
                             {com.shift_time}
                           </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-md font-medium text-black  whitespace-nowrap dark:text-white">
                             {com.extras}
                           </td>
                         </tr>

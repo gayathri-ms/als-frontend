@@ -57,14 +57,14 @@ const Balanceamount = () => {
                           key={index}
                           className={
                             com.balance === 0
-                              ? "bg-green-100 border-b border-gray-400  dark:bg-gray-800 dark:border-gray-700"
-                              : "bg-red-200 border-b border-gray-400 dark:bg-gray-400 dark:border-gray-700"
+                              ? "bg-green-500 border-b border-gray-400  dark:bg-gray-800 dark:border-gray-700"
+                              : "bg-white border-b border-gray-400 dark:bg-gray-400 dark:border-gray-700"
                           }
                         >
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com._id.company}
                           </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-bold text-gray-700 whitespace-nowrap dark:text-gray-400">
                             {com.balance}
                           </td>
                         </tr>
