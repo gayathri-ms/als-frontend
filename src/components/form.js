@@ -203,23 +203,20 @@ const Form = () => {
                     </select>
                   </div>
                 </div>
-                {delivery === "out" ? (
-                  <div className="mb-6 mr-5">
-                    <label className=" mb-2 text-lg font-medium text-pink-600">
-                      Extras
-                    </label>
-                    <input
-                      type="number"
-                      onChange={onHandle("extras")}
-                      value={extras}
-                      placeholder="Extras"
-                      required
-                      className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                    />
-                  </div>
-                ) : (
-                  ""
-                )}
+
+                <div className="mb-6 mr-5">
+                  <label className=" mb-2 text-lg font-medium text-pink-600">
+                    Extras
+                  </label>
+                  <input
+                    type="number"
+                    onChange={onHandle("extras")}
+                    value={extras}
+                    placeholder="Extras"
+                    required
+                    className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
               </div>
               <div className="md:flex">
                 <div className="mb-6 mr-5">

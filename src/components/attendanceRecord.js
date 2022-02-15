@@ -29,6 +29,12 @@ const A_record = ({ com, setMsg }) => {
         shift_time: "day",
         extras: 0,
       });
+    } else if (name === "present" && e.target.value === "present") {
+      setDetails({
+        ...details,
+        present: "present",
+        shift_time: "",
+      });
     } else setDetails({ ...details, [name]: e.target.value });
   };
 
@@ -37,7 +43,7 @@ const A_record = ({ com, setMsg }) => {
 
   const onSubmit = () => {
     if (isedit) {
-      if (present !== "") {
+      if (present !== "" && shift_time !== "") {
         addAttendance(details, users.user, users.token)
           .then((data) => {
             if (data.err) {
@@ -47,8 +53,11 @@ const A_record = ({ com, setMsg }) => {
           .catch((err) => console.log(err));
         setIsedit(!isedit);
         setNext(true);
+        setMsg("");
       } else {
-        setMsg("Enter whether the labour is present or not");
+        if (present === "")
+          setMsg("Enter whether the labour is present or not");
+        if (shift_time === "") setMsg("Enter the Shift Time");
       }
     } else {
       setIsedit(!isedit);

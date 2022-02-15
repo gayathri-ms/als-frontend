@@ -106,6 +106,18 @@ const Dis_labour = () => {
                       >
                         Salary
                       </th>
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
+                        No of Days Present
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
+                        No of Loads
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -136,6 +148,12 @@ const Dis_labour = () => {
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.salary_work}
+                          </td>
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {com.no_days}
+                          </td>
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {com.no_loads}
                           </td>
                         </tr>
                       );

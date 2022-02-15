@@ -197,7 +197,7 @@ const ExtraSalary = () => {
                   ""
                 )}
               </div>
-              {console.log(values)}
+              {/* {console.log(values)} */}
             </form>
             <div>
               {msg === "Added Successfully" ? (

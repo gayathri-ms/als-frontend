@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../helper/auth";
 import { getallform, updateform } from "../helper/formHelper";
+import { frontend } from "./variables";
 
 const Updateamt = () => {
   const [invoice, setInvoice] = useState(0);
@@ -34,6 +35,11 @@ const Updateamt = () => {
     e.preventDefault();
     let detail = forms.filter((data) => data.invoice === Number(invoice));
     setForm(detail);
+    console.log(detail);
+    if (detail[0].acc_holder) {
+      console.log(detail[0].acc_holder);
+      setAcc_holder(detail[0].acc_holder);
+    }
     setNext(true);
   };
   const onHandleChange = (name) => (e) => {
@@ -48,9 +54,14 @@ const Updateamt = () => {
           if (data.err) {
             setMsg(data.err);
           } else {
-            //   console.log(data);
             setForm([data]);
             setMsg("Updated Successfully");
+            setTimeout(() => {
+              window.location.reload(false);
+              if (isAuthenticated()) {
+                window.location.replace(`${frontend}updateamount`);
+              }
+            }, 6000);
           }
         })
         .catch((err) => {
@@ -79,22 +90,26 @@ const Updateamt = () => {
                 className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
               />
             </div>
-            <div>
-              <label className=" text-xl font-medium text-pink-600">
-                Account Holder
-              </label>
+            {form[0].acc_holder !== "" ? (
+              ""
+            ) : (
+              <div>
+                <label className=" text-xl font-medium text-pink-600">
+                  Account Holder
+                </label>
 
-              <select
-                onChange={onHandleChange("acc_holder")}
-                value={acc_holder}
-                className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-              >
-                <option value="">Select</option>
-                <option value="Company">Company</option>
-                <option value="Marappan">Marappan</option>
-                <option value="Rasappan">Rasappan</option>
-              </select>
-            </div>
+                <select
+                  onChange={onHandleChange("acc_holder")}
+                  value={acc_holder}
+                  className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                >
+                  <option value="">Select</option>
+                  <option value="Company">Company</option>
+                  <option value="Marappan">Marappan</option>
+                  <option value="Rasappan">Rasappan</option>
+                </select>
+              </div>
+            )}
 
             {/* <div> {invoice} </div> */}
             <div className="text-center">
@@ -189,6 +204,7 @@ const Updateamt = () => {
                       >
                         Number of Loads
                       </th>
+
                       <th
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
