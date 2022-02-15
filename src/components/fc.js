@@ -138,7 +138,7 @@ const Fc = () => {
                     Expired date
                   </label>
                   <input
-                    type="number"
+                    type="date"
                     onChange={onHandle("expired_date")}
                     value={expired_date}
                     placeholder="Expired date"
@@ -146,6 +146,14 @@ const Fc = () => {
                     className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                   />
                 </div>
+              </div>
+              <div className="mb-6 mt-10 text-center">
+                <button
+                  type="submit"
+                  className="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-500 text-lg font-medium text-white hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-700 sm:ml-3 sm:w-auto sm:text-lg"
+                >
+                  Add FC Details
+                </button>
               </div>
             </form>
             <div>

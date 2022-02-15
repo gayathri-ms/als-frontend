@@ -118,15 +118,15 @@ const Dis_fc = () => {
                             {com.invoice}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {com.date}
+                            {com.dateformat}
                           </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {com.broker_name}
                           </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {com.place}
                           </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {com.vehicle_no}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">

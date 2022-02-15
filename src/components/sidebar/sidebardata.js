@@ -3,6 +3,13 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import * as RiIcons from "react-icons/ri";
+import * as MdIcons from "react-icons/md";
+import * as GiIcons from "react-icons/gi";
+import * as GrIcons from "react-icons/gr";
+import * as BsIcons from "react-icons/bs";
+import * as BiIcons from "react-icons/bi";
+import * as ImIcons from "react-icons/im";
+import * as HiIcons from "react-icons/hi";
 
 export const SidebarData = [
   {
@@ -30,41 +37,39 @@ export const SidebarData = [
         icon: <IoIcons.IoIosPaper />,
         cName: "sub-nav",
       },
-      //   {
-      //     title: "Reports 3",
-      //     path: "/reports/reports3",
-      //     icon: <IoIcons.IoIosPaper />,
-      //   },
     ],
   },
-  {
-    title: "Company",
-    path: "/company",
-    icon: <FaIcons.FaCartPlus />,
-  },
-  {
-    title: "Vehicle",
-    path: "/vehicle",
-    icon: <IoIcons.IoMdPeople />,
-  },
+
   {
     title: "Form",
     path: "/",
-    icon: <IoIcons.IoMdPeople />,
+    icon: <MdIcons.MdLibraryAdd />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
 
     subNav: [
       {
-        title: "Company",
+        title: "Form",
         path: "/form",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <MdIcons.MdAddchart />,
         cName: "sub-nav",
       },
       {
-        title: "Individual Name",
+        title: "New individual form",
         path: "/individual_form",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <MdIcons.MdPersonAddAlt1 />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Add Company",
+        path: "/company",
+        icon: <GiIcons.GiFactory />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Add Vehicle",
+        path: "/vehicle",
+        icon: <RiIcons.RiTruckLine />,
         cName: "sub-nav",
       },
     ],
@@ -72,7 +77,7 @@ export const SidebarData = [
   {
     title: "Contact Details",
     path: "/",
-    icon: <IoIcons.IoMdPeople />,
+    icon: <RiIcons.RiContactsFill />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
 
@@ -80,13 +85,13 @@ export const SidebarData = [
       {
         title: "Phone Number",
         path: "/phoneno",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <BsIcons.BsFillTelephoneFill />,
         cName: "sub-nav",
       },
       {
         title: "Company Name",
         path: "/companyname",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <GiIcons.GiFactory />,
         cName: "sub-nav",
       },
     ],
@@ -94,12 +99,12 @@ export const SidebarData = [
   {
     title: "Update Amount",
     path: "/updateamount",
-    icon: <IoIcons.IoMdPeople />,
+    icon: <FaIcons.FaEdit />,
   },
   {
     title: "Display Details",
     path: "/",
-    icon: <IoIcons.IoMdPeople />,
+    icon: <BiIcons.BiDetail />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
 
@@ -107,25 +112,25 @@ export const SidebarData = [
       {
         title: "Invoice",
         path: "/display_invoice",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <ImIcons.ImListNumbered />,
         cName: "sub-nav",
       },
       {
         title: "Company Name",
         path: "/display_comp",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <GiIcons.GiFactory />,
         cName: "sub-nav",
       },
       {
         title: "Date",
         path: "/display_date",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <BsIcons.BsCalendarDate />,
         cName: "sub-nav",
       },
       {
         title: "Vehicle Number",
         path: "/display_vehicle_no",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <RiIcons.RiTruckLine />,
         cName: "sub-nav",
       },
     ],
@@ -133,28 +138,54 @@ export const SidebarData = [
   {
     title: "Balance Details",
     path: "/balanceamount",
-    icon: <IoIcons.IoMdPeople />,
-  },
-  {
-    title: "Spares",
-    path: "/spareform",
-    icon: <IoIcons.IoMdPeople />,
+    icon: <HiIcons.HiCurrencyRupee />,
   },
 
   {
-    title: "Diesel Form",
-    path: "/dieselform",
-    icon: <IoIcons.IoMdPeople />,
-  },
-  {
-    title: "Two Wheeler",
-    path: "/petrolform",
-    icon: <IoIcons.IoMdPeople />,
+    title: "Maintanence",
+    path: "/",
+    icon: <GiIcons.GiSpanner />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Spares",
+        path: "/spareform",
+        icon: <BsIcons.BsTools />,
+        cName: "sub-nav",
+      },
+
+      {
+        title: "Diesel Form",
+        path: "/dieselform",
+        icon: <FaIcons.FaGasPump />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Petrol Form",
+        path: "/petrolform",
+        icon: <GiIcons.GiGasPump />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Insurance",
+        path: "/insurance_form",
+        icon: <FaIcons.FaShieldAlt />,
+        cName: "sub-nav",
+      },
+      {
+        title: "FC Details",
+        path: "/fc_form",
+        cName: "sub-nav",
+        icon: <GiIcons.GiWindpump />,
+      },
+    ],
   },
   {
     title: "Display Maintanence",
     path: "/",
-    icon: <IoIcons.IoMdPeople />,
+    icon: <BiIcons.BiDetail />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
 
@@ -162,64 +193,68 @@ export const SidebarData = [
       {
         title: "Display Spares",
         path: "/display_spare",
-        icon: <IoIcons.IoMdPeople />,
+        icon: <BsIcons.BsTools />,
         cName: "sub-nav",
       },
       {
         title: "Display Diesel Details",
         path: "/display_diesel",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaGasPump />,
         cName: "sub-nav",
       },
       {
         title: "Display Petrol Details",
         path: "/display_petrol",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <GiIcons.GiGasPump />,
         cName: "sub-nav",
       },
       {
         title: "Display Insurance Details",
         path: "/display_insurance",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaShieldAlt />,
         cName: "sub-nav",
       },
       {
         title: "Display FC Details",
         path: "/display_fc",
-        icon: <IoIcons.IoIosPaper />,
+        icon: <GiIcons.GiWindpump />,
         cName: "sub-nav",
       },
     ],
   },
   {
-    title: "Insurance",
-    path: "/insurance_form",
-    icon: <IoIcons.IoMdPeople />,
-  },
-  {
-    title: "FC Details",
-    path: "/fc_form",
-    icon: <IoIcons.IoMdPeople />,
-  },
-  {
     title: "Labour",
-    path: "/labour_form",
-    icon: <IoIcons.IoMdPeople />,
+    path: "/",
+    icon: <BsIcons.BsPeopleFill />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Add Labour",
+        path: "/labour_form",
+        icon: <BsIcons.BsFillPersonPlusFill />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Attendance",
+        path: "/attendance",
+        icon: <FaIcons.FaRegCalendarCheck />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Extras",
+        path: "/extrasalary",
+        icon: <RiIcons.RiPriceTag2Line />,
+        cName: "sub-nav",
+      },
+    ],
   },
-  {
-    title: "Attendance",
-    path: "/attendance",
-    icon: <IoIcons.IoMdPeople />,
-  },
-  {
-    title: "Extras",
-    path: "/extrasalary",
-    icon: <IoIcons.IoMdPeople />,
-  },
+
   {
     title: "Display Labour",
     path: "/",
-    icon: <IoIcons.IoMdPeople />,
+    icon: <BiIcons.BiDetail />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
 
@@ -227,13 +262,13 @@ export const SidebarData = [
       {
         title: "Labour",
         path: "/display_labour",
-        icon: <IoIcons.IoMdPeople />,
+        icon: <BsIcons.BsPeopleFill />,
         cName: "sub-nav",
       },
       {
         title: "Attendance - Datewise",
         path: "/display_attendance",
-        icon: <IoIcons.IoMdPeople />,
+        icon: <FaIcons.FaRegCalendarCheck />,
         cName: "sub-nav",
       },
     ],

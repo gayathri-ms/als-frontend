@@ -83,22 +83,14 @@ const Sidebar = () => {
             {SidebarData.map((item, index) => {
               return (
                 <div key={index}>
-                  {((item.title === "Company" ||
-                    item.title === "Vehicle" ||
-                    item.title === "Form" ||
+                  {((item.title === "Form" ||
                     item.title === "Contact Details" ||
                     item.title === "Update Amount" ||
                     item.title === "Display Details" ||
                     item.title === "Balance Details" ||
-                    item.title === "Spares" ||
-                    item.title === "Diesel Form" ||
-                    item.title === "Two Wheeler" ||
-                    item.title === "Insurance" ||
-                    item.title === "FC Details" ||
+                    item.title === "Maintanence" ||
                     item.title === "Labour" ||
                     item.title === "Display Labour" ||
-                    item.title === "Attendance" ||
-                    item.title === "Extras" ||
                     item.title === "Display Maintanence") &&
                     isAuthenticated()) ||
                   item.title === "Home" ? (
