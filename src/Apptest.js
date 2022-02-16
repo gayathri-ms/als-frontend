@@ -40,6 +40,8 @@ import Dis_labour from "./components/dis_labour";
 import Attendance from "./components/attendance";
 import Dis_attendance from "./components/dis_attendance";
 import ExtraSalary from "./components/extraSalary";
+import UpdateSal from "./components/updateSal";
+import MonthlySalary from "./components/monthlySalary";
 
 const Apptest = () => {
   return (
@@ -78,6 +80,8 @@ const Apptest = () => {
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/display_attendance" element={<Dis_attendance />} />
           <Route path="/extrasalary" element={<ExtraSalary />} />
+          <Route path="/updatesalary" element={<UpdateSal />} />
+          <Route path="/monthlysalary" element={<MonthlySalary />} />
         </Routes>
       </div>
     </Router>

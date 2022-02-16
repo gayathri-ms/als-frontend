@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { amountbyamount, totalamount } from "../helper/formHelper";
+import { amountbyamount, totalamount, totalGst } from "../helper/formHelper";
 import { isAuthenticated } from "../helper/auth";
 
 const Balanceamount = () => {
   const [total, setTotal] = useState(0);
+  const [gst, setGst] = useState(0);
   const [details, setDetails] = useState([]);
   const [msg, setMsg] = useState("");
   const users = isAuthenticated();
@@ -17,6 +18,14 @@ const Balanceamount = () => {
       })
       .catch((err) => console.log("error", err));
 
+    totalGst(users.user, users.token)
+      .then((data) => {
+        if (data.error) {
+          setMsg(data.error);
+        } else setGst(data.totalGst);
+      })
+      .catch((err) => console.log("error", err));
+
     amountbyamount(users.user, users.token).then((data) => {
       if (data.err) {
         setMsg(data.err);
@@ -27,6 +36,9 @@ const Balanceamount = () => {
     <div className="text-center">
       <div className="text-2xl font-bold mb-10 text-red-700">
         Total : {total}{" "}
+      </div>
+      <div className="text-2xl font-bold mb-10 text-red-700">
+        Total GST Amount : {gst}{" "}
       </div>
       <div>
         <div className="flex flex-col mx-5 text-center">

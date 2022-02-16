@@ -248,6 +248,12 @@ export const SidebarData = [
         icon: <RiIcons.RiPriceTag2Line />,
         cName: "sub-nav",
       },
+      {
+        title: "Update Salary",
+        path: "/updatesalary",
+        icon: <HiIcons.HiCurrencyRupee />,
+        cName: "sub-nav",
+      },
     ],
   },
 
@@ -269,6 +275,12 @@ export const SidebarData = [
         title: "Attendance - Datewise",
         path: "/display_attendance",
         icon: <FaIcons.FaRegCalendarCheck />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Labour Salary",
+        path: "/monthlysalary",
+        icon: <HiIcons.HiCurrencyRupee />,
         cName: "sub-nav",
       },
     ],

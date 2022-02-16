@@ -31,3 +31,21 @@ export const getAllLabour = (user, token) => {
     })
     .catch((error) => console.log(error));
 };
+
+export const updateSalary = (form, user, token) => {
+  return fetch(`${API}/labour/updatedExtra/${user._id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(form),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getAllAttendance } from "../helper/attendanceHelper";
 import { isAuthenticated } from "../helper/auth";
-import { getallform } from "../helper/formHelper";
+import { getAllMonthlySalary } from "../helper/monthlySalaryHelper";
 
-const Dis_attendance = () => {
-  const [date, setDate] = useState("");
+const MonthlySalary = () => {
+  const [month, setMonth] = useState("");
   const [l_id, setl_id] = useState("");
   const [forms, setForms] = useState([]);
   const [form, setForm] = useState([]);
@@ -13,7 +12,7 @@ const Dis_attendance = () => {
   const users = isAuthenticated();
 
   useEffect(() => {
-    getAllAttendance(users.user, users.token)
+    getAllMonthlySalary(users.user, users.token)
       .then((data) => {
         if (data.err) {
           setMsg(data.err);
@@ -24,37 +23,26 @@ const Dis_attendance = () => {
         setForm(data);
       })
       .catch((err) => console.log(err));
-    // return () => {
-    //   setForm([]);
-    // };
   }, []);
 
-  const onHandle = (e) => {
-    const date = new Date(e.target.value);
-    var dateObj = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-
-    const month = dateObj.getMonth() + 1;
-    const day = String(dateObj.getDate()).padStart(2, "0");
-    const year = dateObj.getFullYear();
-    const output = day + "-" + month + "-" + year;
-    // console.log("output", output);
-    const data = forms.filter(
-      (c) => c.date !== undefined && c.date.indexOf(output) !== -1
-    );
-    // console.log("data", data);
-
-    setForm(data);
-    setDate(e.target.value);
-  };
-
-  const onHandle1 = (e) => {
-    const data = forms.filter(
-      (c) =>
-        c.lab_id !== undefined &&
-        c.lab_id.toLowerCase().indexOf(e.target.value) !== -1
-    );
-    setForm(data);
-    setl_id(e.target.value);
+  const onHandle = (name) => (e) => {
+    if (name === "month") {
+      const data = forms.filter(
+        (c) =>
+          c.month !== undefined &&
+          c.month.toLowerCase().indexOf(e.target.value) !== -1
+      );
+      setForm(data);
+      setMonth(e.target.value);
+    } else if (name === "l_id") {
+      const data = forms.filter(
+        (c) =>
+          c.l_id !== undefined &&
+          c.l_id.toLowerCase().indexOf(e.target.value) !== -1
+      );
+      setForm(data);
+      setl_id(e.target.value);
+    }
   };
 
   return (
@@ -62,14 +50,14 @@ const Dis_attendance = () => {
       <div className="md:flex justify-center">
         <div className="mb-6 mr-5">
           <label className=" mb-8 text-lg font-medium text-pink-600">
-            Date
+            Month
           </label>
 
           <input
-            type="date"
-            onChange={onHandle}
-            placeholder="dd/mm/yyyy"
-            value={date}
+            type="text"
+            onChange={onHandle("month")}
+            placeholder="Month Name"
+            value={month}
             required
             className="w-full mt-5 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
           />
@@ -80,7 +68,7 @@ const Dis_attendance = () => {
           </label>
           <input
             type="text"
-            onChange={onHandle1}
+            onChange={onHandle("l_id")}
             placeholder="labour id"
             value={l_id}
             required
@@ -112,9 +100,15 @@ const Dis_attendance = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Labour Name
+                        Date
                       </th>
 
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
+                        Month
+                      </th>
                       <th
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
@@ -125,25 +119,13 @@ const Dis_attendance = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Date
+                        Labour Name
                       </th>
                       <th
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        present
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                      >
-                        shift_time
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                      >
-                        extras
+                        Salary
                       </th>
                     </tr>
                   </thead>
@@ -158,23 +140,20 @@ const Dis_attendance = () => {
                             {com.invoice}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-black capitalize whitespace-nowrap dark:text-gray-400">
-                            {com.labour}
+                            {com.dateformat}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-black  whitespace-nowrap dark:text-gray-400">
-                            {com.lab_id}
+                            {com.month}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-black  whitespace-nowrap dark:text-gray-400">
-                            {com.date}
+                            {com.l_id}
                           </td>
 
                           <td className="py-4 px-6 text-md  font-medium text-black  whitespace-nowrap dark:text-white">
-                            {com.present}
+                            {com.labour_name}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-black  whitespace-nowrap dark:text-white">
-                            {com.shift_time}
-                          </td>
-                          <td className="py-4 px-6 text-md font-medium text-black  whitespace-nowrap dark:text-white">
-                            {com.extras}
+                            {com.salary}
                           </td>
                         </tr>
                       );
@@ -193,4 +172,4 @@ const Dis_attendance = () => {
   );
 };
 
-export default Dis_attendance;
+export default MonthlySalary;

@@ -70,6 +70,21 @@ export const totalamount = (user, token) => {
     .catch((error) => console.log(error));
 };
 
+export const totalGst = (user, token) => {
+  return fetch(`${API}/load/totalGst/${user._id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
+
 export const amountbyamount = (user, token) => {
   return fetch(`${API}/load/payment/${user._id}`, {
     method: "GET",
