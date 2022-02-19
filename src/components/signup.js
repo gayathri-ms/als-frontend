@@ -41,7 +41,7 @@ const Signup = () => {
           setDeliver(data.deliverability);
           console.log(deliver);
 
-          if (deliver === "DELIVERABLE") {
+          if (data.deliverability === "DELIVERABLE") {
             signup(username, email, password)
               .then((data) => {
                 if (data.err) {
