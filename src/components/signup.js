@@ -12,9 +12,11 @@ const Signup = () => {
   const [redirect, setRedirect] = useState(false);
   const [deliver, setDeliver] = useState("");
   const { username, email, password } = values;
+
   const onHandle = (name) => (e) => {
     setValues({ ...values, [name]: e.target.value });
   };
+
   const performRedirect = () => {
     window.location.reload(false);
     // console.log("isAuthen", isAuthenticated());
@@ -32,21 +34,24 @@ const Signup = () => {
       values.password !== ""
     ) {
       fetch(
-        `http://emailvalidation.abstractapi.com/v1/?api_key=7e6d95c0ee1545f19c985fbd7adb8723&email=${values.email}`
+        `https://emailvalidation.abstractapi.com/v1/?api_key=7e6d95c0ee1545f19c985fbd7adb8723&email=${values.email}`
       )
         .then((response) => response.json())
-        .then((data) => setDeliver(data.deliverability));
-      console.log(deliver);
-      if (deliver === "DELIVERABLE") {
-        signup(username, email, password)
-          .then((data) => {
-            if (data.err) {
-              setMsg("Email already exists");
-            } else authenticate(data, () => setRedirect(true));
-          })
-          .catch((err) => console.log(err));
-        setValues({ ...values, username: "", email: "", password: "" });
-      } else setMsg("Enter the valid email address");
+        .then((data) => {
+          setDeliver(data.deliverability);
+          console.log(deliver);
+
+          if (deliver === "DELIVERABLE") {
+            signup(username, email, password)
+              .then((data) => {
+                if (data.err) {
+                  setMsg("Email already exists");
+                } else authenticate(data, () => setRedirect(true));
+              })
+              .catch((err) => console.log(err));
+            setValues({ ...values, username: "", email: "", password: "" });
+          } else setMsg("Enter the valid email address");
+        });
     } else {
       if (values.email === "") setMsg("Enter the email address");
       if (values.username === "") setMsg("Enter the username");
