@@ -49,13 +49,13 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: "Form",
+        title: "Old User Form",
         path: "/form",
         icon: <MdIcons.MdAddchart />,
         cName: "sub-nav",
       },
       {
-        title: "New individual form",
+        title: "New user form",
         path: "/individual_form",
         icon: <MdIcons.MdPersonAddAlt1 />,
         cName: "sub-nav",

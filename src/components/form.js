@@ -10,13 +10,17 @@ const Form = () => {
     company: "",
     address: "",
     phone_no: "",
-    no_loads: 0,
+    no_loads_in: 0,
+    no_loads_out: 0,
     rate: 0,
-    delivery: "in",
     extras: 0,
+    total_rate_in: 0,
+    total_rate_out: 0,
     gst: "no",
     gstamt: 0,
   });
+  const [del_in, setDelIn] = useState("In");
+  const [del_out, setDelOut] = useState("Out");
 
   const [vehicles, setVehicles] = useState([]);
   const [companies, setCompanies] = useState([]);
@@ -26,12 +30,14 @@ const Form = () => {
     company,
     address,
     phone_no,
-    no_loads,
+    no_loads_in,
+    no_loads_out,
     rate,
-    delivery,
     extras,
     gst,
     gstamt,
+    total_rate_in,
+    total_rate_out,
   } = values;
 
   const users = isAuthenticated();
@@ -51,6 +57,11 @@ const Form = () => {
         address: detail[0].address,
         phone_no: detail[0].phone,
       });
+    } else if (name === "no_loads_in") {
+      var val = e.target.value * rate;
+      setValues({ ...values, [name]: e.target.value, total_rate_in: val });
+    } else if (name === "total_rate_in") {
+      console.log("");
     } else setValues({ ...values, [name]: e.target.value });
   };
 
@@ -83,7 +94,12 @@ const Form = () => {
   const onHandleSubmit = (e) => {
     e.preventDefault();
     // console.log("values", values);
-    if (company !== "" && vehicle_no !== "" && no_loads !== 0) {
+    if (
+      company !== "" &&
+      vehicle_no !== "" &&
+      no_loads_in !== 0 &&
+      no_loads_out !== 0
+    ) {
       createForm(values, users.user, users.token).then((data) => {
         if (data.err) {
           setMsg(data.err);
@@ -94,10 +110,12 @@ const Form = () => {
           company: "",
           address: "",
           phone_no: "",
-          no_loads: 0,
+          no_loads_in: 0,
+          no_loads_out: 0,
           rate: 0,
-          delivery: "in",
           extras: 0,
+          total_rate_in: 0,
+          total_rate_out: 0,
           gst: "no",
           gstamt: 0,
         });
@@ -106,7 +124,8 @@ const Form = () => {
     } else {
       if (company === "") setMsg("Fill the Company Name");
       if (vehicle_no === "") setMsg("Fill the Vehicle Number");
-      if (no_loads === 0) setMsg("Fill the total number of Loads");
+      if (no_loads_in === 0) setMsg("Fill the total number of in Loads");
+      if (no_loads_out === 0) setMsg("Fill the total number of out Loads");
     }
   };
 
@@ -137,35 +156,61 @@ const Form = () => {
                   </select>
                 </div>
               </div>
-              <div className="mb-6 mt-6 mr-5">
-                <label className=" mb-8 text-lg font-medium text-pink-600">
-                  Company Name
-                </label>
-                <select
-                  onChange={onHandle("company")}
-                  value={company}
-                  className="w-full ml-5 my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-black"
-                >
-                  <option>Select</option>
-                  {companies.map((company, index) => {
-                    return (
-                      <option key={index}>
-                        {company.company_name}
-                        {/* {setValues({ ...values, rate: company.rate })} */}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
+
               <div className="md:flex">
+                <div className="mb-6 mt-6 mr-5">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Company Name
+                  </label>
+                  <select
+                    onChange={onHandle("company")}
+                    value={company}
+                    className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-black"
+                  >
+                    <option>Select</option>
+                    {companies.map((company, index) => {
+                      return (
+                        <option key={index}>
+                          {company.company_name}
+                          {/* {setValues({ ...values, rate: company.rate })} */}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                <div className="mb-6 mt-6 mr-5">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Rate
+                  </label>
+                  <input
+                    type="number"
+                    onChange={onHandle("rate")}
+                    placeholder="Rate"
+                    value={rate}
+                    required
+                    className="w-full pointer-events-none md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+              </div>
+              <div className="md:flex justify-between">
+                <div className="mb-6 mr-5">
+                  <label className=" mb-2 text-lg font-medium text-pink-600 ">
+                    Delivery
+                  </label>
+                  <input
+                    type="text"
+                    defaultValue={del_in}
+                    className="w-full pointer-events-none md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
                 <div className="mb-6 mr-5">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     No of Loads
                   </label>
                   <input
                     type="number"
-                    onChange={onHandle("no_loads")}
-                    value={no_loads}
+                    onChange={onHandle("no_loads_in")}
+                    value={no_loads_in}
                     placeholder="no of loads"
                     required
                     className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
@@ -177,33 +222,53 @@ const Form = () => {
                   </label>
                   <input
                     type="number"
-                    onChange={onHandle("rate")}
-                    placeholder="Rate"
-                    value={rate}
+                    onChange={onHandle("total_rate_in")}
+                    // placeholder="Rate"
+                    value={total_rate_in}
                     required
-                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    className="w-full pointer-events-none md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                   />
                 </div>
               </div>
               <div className="md:flex justify-between">
                 <div className="mb-6 mr-5">
-                  <div>
-                    <label className=" mb-2 text-lg font-medium text-pink-600 ">
-                      Delivery
-                    </label>
-                  </div>
-                  <div>
-                    <select
-                      onChange={onHandle("delivery")}
-                      value={delivery}
-                      className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                    >
-                      <option value="in">In</option>
-                      <option value="out">Out</option>
-                    </select>
-                  </div>
+                  <label className=" mb-2 text-lg font-medium text-pink-600 ">
+                    Delivery
+                  </label>
+                  <input
+                    type="text"
+                    defaultValue={del_out}
+                    className="w-full pointer-events-none md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
                 </div>
-
+                <div className="mb-6 mr-5">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    No of Loads
+                  </label>
+                  <input
+                    type="number"
+                    onChange={onHandle("no_loads_out")}
+                    value={no_loads_out}
+                    placeholder="no of loads"
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+                <div className="mb-6 mr-5">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Total Out Rate
+                  </label>
+                  <input
+                    type="number"
+                    onChange={onHandle("total_rate_out")}
+                    placeholder="Rate"
+                    value={total_rate_out}
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+              </div>
+              <div className="md:flex">
                 <div className="mb-6 mr-5">
                   <label className=" mb-2 text-lg font-medium text-pink-600">
                     Extras
