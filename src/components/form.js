@@ -7,6 +7,7 @@ import { getAllVehicle } from "../helper/vehicleHelper";
 const Form = () => {
   const [values, setValues] = useState({
     vehicle_no: "",
+    load_date: "",
     company: "",
     address: "",
     phone_no: "",
@@ -18,15 +19,19 @@ const Form = () => {
     total_rate_out: 0,
     gst: "no",
     gstamt: 0,
+    bill: "-",
+    amt_received: 0,
+    acc_holder: "",
   });
   const [del_in, setDelIn] = useState("In");
   const [del_out, setDelOut] = useState("Out");
-
+  const [amtRec, setAmtRec] = useState("");
   const [vehicles, setVehicles] = useState([]);
   const [companies, setCompanies] = useState([]);
 
   const {
     vehicle_no,
+    load_date,
     company,
     address,
     phone_no,
@@ -36,8 +41,11 @@ const Form = () => {
     extras,
     gst,
     gstamt,
+    bill,
     total_rate_in,
     total_rate_out,
+    amt_received,
+    acc_holder,
   } = values;
 
   const users = isAuthenticated();
@@ -94,12 +102,7 @@ const Form = () => {
   const onHandleSubmit = (e) => {
     e.preventDefault();
     // console.log("values", values);
-    if (
-      company !== "" &&
-      vehicle_no !== "" &&
-      no_loads_in !== 0 &&
-      no_loads_out !== 0
-    ) {
+    if (company !== "" && vehicle_no !== "") {
       createForm(values, users.user, users.token).then((data) => {
         if (data.err) {
           setMsg(data.err);
@@ -107,6 +110,7 @@ const Form = () => {
         setValues({
           ...values,
           vehicle_no: "",
+          load_date: "",
           company: "",
           address: "",
           phone_no: "",
@@ -118,67 +122,90 @@ const Form = () => {
           total_rate_out: 0,
           gst: "no",
           gstamt: 0,
+          bill: "-",
+          amt_received: 0,
+          acc_holder: "",
         });
+        setAmtRec("");
         setMsg("Added Successfully");
       });
     } else {
       if (company === "") setMsg("Fill the Company Name");
       if (vehicle_no === "") setMsg("Fill the Vehicle Number");
-      if (no_loads_in === 0) setMsg("Fill the total number of in Loads");
-      if (no_loads_out === 0) setMsg("Fill the total number of out Loads");
     }
   };
 
   return (
     <div className="">
       <div className=" mx-auto">
-        <div className="max-w-2xl p-5 mx-auto my-10 bg-white rounded-md shadow-sm">
+        <div className="max-w-4xl p-5 mx-auto my-10 bg-white rounded-md shadow-sm">
           <div>
             <form onSubmit={onHandleSubmit}>
               <div className="md:flex border-t-2 border-b-2 border-red-200">
                 <div className="mb-6 mt-5 mr-5">
+                  <div>
+                    <label className=" mb-8 text-lg font-medium text-pink-600">
+                      Vehicle No
+                    </label>
+                  </div>
+                  <div>
+                    <select
+                      onChange={onHandle("vehicle_no")}
+                      value={vehicle_no}
+                      className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    >
+                      <option>Select</option>
+                      {vehicles.map((vehicle, index) => {
+                        return (
+                          <option key={index} value={vehicle.vehicle_no}>
+                            {vehicle.vehicle_no}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </div>
+                <div className="mb-6 mt-5 mr-5">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
-                    Vehicle No
+                    Load Date
                   </label>
-                  <select
-                    onChange={onHandle("vehicle_no")}
-                    value={vehicle_no}
-                    className="w-full ml-5 my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                  >
-                    <option>Select</option>
-                    {vehicles.map((vehicle, index) => {
-                      return (
-                        <option key={index} value={vehicle.vehicle_no}>
-                          {vehicle.vehicle_no}
-                        </option>
-                      );
-                    })}
-                  </select>
+                  <input
+                    type="date"
+                    onChange={onHandle("load_date")}
+                    placeholder="Load Date"
+                    value={load_date}
+                    required
+                    className="md:w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
                 </div>
               </div>
 
               <div className="md:flex">
-                <div className="mb-6 mt-6 mr-5">
-                  <label className=" mb-8 text-lg font-medium text-pink-600">
-                    Company Name
-                  </label>
-                  <select
-                    onChange={onHandle("company")}
-                    value={company}
-                    className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-black"
-                  >
-                    <option>Select</option>
-                    {companies.map((company, index) => {
-                      return (
-                        <option key={index}>
-                          {company.company_name}
-                          {/* {setValues({ ...values, rate: company.rate })} */}
-                        </option>
-                      );
-                    })}
-                  </select>
+                <div className="mb-6 mt-6 mr-5 md:w-1/3">
+                  <div>
+                    <label className=" mb-8 text-lg font-medium text-pink-600">
+                      Company Name
+                    </label>
+                  </div>
+                  <div>
+                    <select
+                      onChange={onHandle("company")}
+                      value={company}
+                      className="w-full bg-white md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-black"
+                    >
+                      <option>Select</option>
+                      {companies.map((company, index) => {
+                        return (
+                          <option key={index}>
+                            {company.company_name}
+                            {/* {setValues({ ...values, rate: company.rate })} */}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
                 </div>
-                <div className="mb-6 mt-6 mr-5">
+                <div className="mb-6 mt-6 mr-5 md:w-1/3">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Rate
                   </label>
@@ -218,7 +245,7 @@ const Form = () => {
                 </div>
                 <div className="mb-6 mr-5">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
-                    Rate
+                    Total In Rate
                   </label>
                   <input
                     type="number"
@@ -269,7 +296,7 @@ const Form = () => {
                 </div>
               </div>
               <div className="md:flex">
-                <div className="mb-6 mr-5">
+                <div className="mb-6 mr-5 md:w-1/3">
                   <label className=" mb-2 text-lg font-medium text-pink-600">
                     Extras
                   </label>
@@ -284,7 +311,7 @@ const Form = () => {
                 </div>
               </div>
               <div className="md:flex">
-                <div className="mb-6 mr-5">
+                <div className="mb-6 mr-5 md:w-1/3">
                   <div>
                     <label className=" mb-2 text-lg font-medium text-pink-600">
                       GST
@@ -295,7 +322,7 @@ const Form = () => {
                     <select
                       onChange={onHandle("gst")}
                       value={gst}
-                      className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                      className="w-full p-2 bg-white max-w-25 md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                     >
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
@@ -303,7 +330,7 @@ const Form = () => {
                   </div>
                 </div>
                 {gst === "yes" ? (
-                  <div className="mb-6 mr-5">
+                  <div className="mb-6 mr-5 md:w-1/3">
                     <label className="mb-2 text-lg font-medium text-pink-600">
                       GST in %
                     </label>
@@ -319,8 +346,81 @@ const Form = () => {
                 ) : (
                   ""
                 )}
+                {gst === "yes" ? (
+                  <div className="mb-6 mr-5 md:w-1/3">
+                    <label className="mb-2 text-lg font-medium text-pink-600">
+                      GST Bill No
+                    </label>
+                    <input
+                      type="text"
+                      onChange={onHandle("bill")}
+                      placeholder="Bill No"
+                      value={bill}
+                      required
+                      className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
+              <div className="md:flex">
+                <div className="mb-6 mr-5 md:w-1/3">
+                  <div>
+                    <label className=" mb-2 text-lg font-medium text-pink-600">
+                      Amount Received
+                    </label>
+                  </div>
 
+                  <div>
+                    <select
+                      onChange={(e) => setAmtRec(e.target.value)}
+                      value={amtRec}
+                      className="w-full bg-white md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    >
+                      <option value="">Select</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                  </div>
+                </div>
+                {amtRec === "yes" ? (
+                  <div className="mb-6 mr-5 md:w-1/3">
+                    <label className="mb-2 text-lg font-medium text-pink-600">
+                      Amount
+                    </label>
+                    <input
+                      type="number"
+                      onChange={onHandle("amt_received")}
+                      placeholder="Amount Received"
+                      value={amt_received}
+                      required
+                      className="w-full md:mt-3 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+                {amtRec === "yes" ? (
+                  <div className="mb-6 mr-5 md:w-1/3">
+                    <label className="mb-2 text-lg font-medium text-pink-600">
+                      Account Holder
+                    </label>
+                    <select
+                      onChange={onHandle("acc_holder")}
+                      value={acc_holder}
+                      className="w-full bg-white md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    >
+                      <option value="">Select</option>
+                      <option value="Company">Company</option>
+                      <option value="Marappan">Marappan</option>
+                      <option value="Rasappan">Rasappan</option>
+                    </select>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
               <div className="mb-6 mt-10 text-center">
                 <button
                   type="submit"

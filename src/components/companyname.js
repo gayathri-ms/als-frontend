@@ -27,7 +27,7 @@ const Companyname = () => {
 
   const onHandle = (e) => {
     const comp = companies.filter(
-      (c) => c.company_name.indexOf(e.target.value) !== -1
+      (c) => c.company_name.toLowerCase().indexOf(e.target.value) !== -1
     );
     setCompany(comp);
     setCompanyname(e.target.value);

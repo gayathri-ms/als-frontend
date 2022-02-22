@@ -96,6 +96,12 @@ const Dis_date = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
+                        Load Date
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
                         Rate
                       </th>
                       <th
@@ -160,6 +166,9 @@ const Dis_date = () => {
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {com.company}
+                          </td>
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {com.load_date}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.rate}

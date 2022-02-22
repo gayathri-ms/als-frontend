@@ -26,7 +26,7 @@ const Dis_vehicleNo = () => {
     const data = forms.filter(
       (c) =>
         c.vehicle_no !== undefined &&
-        c.vehicle_no.indexOf(e.target.value) !== -1
+        c.vehicle_no.toLowerCase().indexOf(e.target.value) !== -1
     );
     setForm(data);
     setVehicle(e.target.value);
@@ -86,6 +86,12 @@ const Dis_vehicleNo = () => {
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
                         Company/Individual Name
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
+                        Load Date
                       </th>
                       <th
                         scope="col"
@@ -155,6 +161,9 @@ const Dis_vehicleNo = () => {
                           </td>
                           <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
                             {com.company}
+                          </td>
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {com.load_date}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.rate}

@@ -47,7 +47,7 @@ const Dis_petrol = () => {
     const data = forms.filter(
       (c) =>
         c.vehicle_no !== undefined &&
-        c.vehicle_no.indexOf(e.target.value) !== -1
+        c.vehicle_no.toLowerCase().indexOf(e.target.value) !== -1
     );
     setForm(data);
     setVehicle(e.target.value);

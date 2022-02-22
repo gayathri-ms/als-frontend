@@ -27,7 +27,9 @@ const Dis_spare = () => {
   const onHandle = (e) => {
     setSpareName(e.target.value);
     const data = forms.filter(
-      (c) => c.name !== undefined && c.name.indexOf(e.target.value) !== -1
+      (c) =>
+        c.name !== undefined &&
+        c.name.toLowerCase().indexOf(e.target.value) !== -1
     );
     setForm(data);
     // setInvoice(e.target.value);

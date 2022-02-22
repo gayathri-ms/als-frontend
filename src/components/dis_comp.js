@@ -25,7 +25,9 @@ const Dis_comp = () => {
 
   const onHandle = (e) => {
     const data = forms.filter(
-      (c) => c.company !== undefined && c.company.indexOf(e.target.value) !== -1
+      (c) =>
+        c.company !== undefined &&
+        c.company.toLowerCase().indexOf(e.target.value) !== -1
     );
     // console.log("data", data);
 
@@ -84,6 +86,12 @@ const Dis_comp = () => {
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
                         Company/Individual Name
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
+                        Load Date
                       </th>
                       <th
                         scope="col"
@@ -153,6 +161,9 @@ const Dis_comp = () => {
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {com.company}
+                          </td>
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {com.load_date}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.rate}
