@@ -140,7 +140,11 @@ export const SidebarData = [
     path: "/balanceamount",
     icon: <HiIcons.HiCurrencyRupee />,
   },
-
+  {
+    title: "Monthly Income",
+    path: "/monthlyIncome",
+    icon: <HiIcons.HiCurrencyRupee />,
+  },
   {
     title: "Maintanence",
     path: "/",

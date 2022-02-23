@@ -44,6 +44,7 @@ import UpdateSal from "./components/updateSal";
 import MonthlySalary from "./components/monthlySalary";
 import Expenses from "./components/expenses";
 import Dis_expenses from "./components/dis_expenses";
+import MonthlyIncome from "./components/monthlyIncome";
 
 const Apptest = () => {
   return (
@@ -86,6 +87,7 @@ const Apptest = () => {
           <Route path="/monthlysalary" element={<MonthlySalary />} />
           <Route path="/expenses" element={<Expenses />} />
           <Route path="/display_expenses" element={<Dis_expenses />} />
+          <Route path="/monthlyIncome" element={<MonthlyIncome />} />
         </Routes>
       </div>
     </Router>

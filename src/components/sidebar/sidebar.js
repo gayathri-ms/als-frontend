@@ -88,6 +88,7 @@ const Sidebar = () => {
                     item.title === "Update Amount" ||
                     item.title === "Display Details" ||
                     item.title === "Balance Details" ||
+                    item.title === "Monthly Income" ||
                     item.title === "Maintanence" ||
                     item.title === "Labour" ||
                     item.title === "Display Labour" ||
