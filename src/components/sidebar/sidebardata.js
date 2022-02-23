@@ -150,6 +150,12 @@ export const SidebarData = [
 
     subNav: [
       {
+        title: "Expenses",
+        path: "/expenses",
+        icon: <HiIcons.HiCurrencyRupee />,
+        cName: "sub-nav",
+      },
+      {
         title: "Spares",
         path: "/spareform",
         icon: <BsIcons.BsTools />,
@@ -190,6 +196,12 @@ export const SidebarData = [
     iconOpened: <RiIcons.RiArrowUpSFill />,
 
     subNav: [
+      {
+        title: "Display Expenses",
+        path: "/display_expenses",
+        icon: <HiIcons.HiCurrencyRupee />,
+        cName: "sub-nav",
+      },
       {
         title: "Display Spares",
         path: "/display_spare",

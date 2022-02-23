@@ -67,7 +67,7 @@ const Dis_inv = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Date
+                        Load Date
                       </th>
                       <th
                         scope="col"
@@ -81,12 +81,7 @@ const Dis_inv = () => {
                       >
                         Company/Individual Name
                       </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                      >
-                        Load Date
-                      </th>
+
                       <th
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
@@ -121,6 +116,12 @@ const Dis_inv = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
+                        Bill created Date
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                      >
                         Amount Received
                       </th>
                       <th
@@ -147,17 +148,14 @@ const Dis_inv = () => {
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.invoice}
                           </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
-                            {com.dateformat}
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {com.load_date}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {com.vehicle_no}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {com.company}
-                          </td>
-                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {com.load_date}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.rate}
@@ -173,6 +171,9 @@ const Dis_inv = () => {
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.grandtotal}
+                          </td>
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
+                            {com.dateformat}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {com.amt_received}
