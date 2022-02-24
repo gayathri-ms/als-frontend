@@ -49,70 +49,46 @@ const MonthlyIncome = () => {
   };
 
   const onHandleSubmit = (e) => {
-    e.preventDefault();
-    const data = forms.filter((c) => c.month === Number(month));
-    console.log("month", month);
-    if (data.length === 0) {
-      // add
-      addIncome(month, users.user, users.token)
-        .then((data) => {
-          if (data.err) setMsg(data.err);
-          else {
-            setMonth("");
-            // setTimeout(() => setMsg("Added Successfully"), 5000);
-            setMsg("");
-            window.location.reload(true);
-          }
-        })
-        .catch((err) => console.log(err));
-    } else {
-      //update
-      updateIncome(month, users.user, users.token).then((data) => {
-        if (data.err) setMsg(data.err);
-        else {
-          setMonth("");
-          // setTimeout(() => setMsg("Updated Successfully"), 5000);
-          setMsg("");
-        }
-      });
-    }
+    const data = forms.filter((c) => c.month === Number(e.target.value));
+    setForm(data);
+    setMonth(e.target.value);
   };
 
   return (
     <div className="flex flex-col text-center">
-      <form onSubmit={onHandleSubmit}>
-        <div className="mb-6 mt-5 mr-5">
-          <div>
-            <label className=" mb-8 text-lg font-medium text-pink-600">
-              Month
-            </label>
-          </div>
-          <div>
-            <select
-              onChange={onHandle}
-              value={month}
-              className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-            >
-              <option>Select</option>
-              {month_name.map((m_name, index) => {
-                return (
-                  <option key={index} value={index + 1}>
-                    {m_name}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+      {/* <form> */}
+      <div className="mb-6 mt-5 mr-5">
+        <div>
+          <label className=" mb-8 text-lg font-medium text-pink-600">
+            Month
+          </label>
         </div>
-        <div className="mb-6 mt-10 text-center">
+        <div>
+          <select
+            onChange={onHandle}
+            value={month}
+            className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+          >
+            <option>Select</option>
+            {month_name.map((m_name, index) => {
+              return (
+                <option key={index} value={index + 1}>
+                  {m_name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </div>
+      {/* <div className="mb-6 mt-10 text-center">
           <button
             type="submit"
             className="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-500 text-lg font-medium text-white hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-700 sm:ml-3 sm:w-auto sm:text-lg"
           >
             Check
           </button>
-        </div>
-      </form>
+        </div> */}
+      {/* </form> */}
 
       <div className="text-center mb-5">
         <div className="font-medium mt-5 text-center text-2xl text-red-700">
