@@ -45,6 +45,8 @@ import MonthlySalary from "./components/monthlySalary";
 import Expenses from "./components/expenses";
 import Dis_expenses from "./components/dis_expenses";
 import MonthlyIncome from "./components/monthlyIncome";
+import EditForm from "./components/editForm";
+import EditCompany from "./components/editCompany";
 
 const Apptest = () => {
   return (
@@ -88,6 +90,8 @@ const Apptest = () => {
           <Route path="/expenses" element={<Expenses />} />
           <Route path="/display_expenses" element={<Dis_expenses />} />
           <Route path="/monthlyIncome" element={<MonthlyIncome />} />
+          <Route path="/editform" element={<EditForm />} />
+          <Route path="/editcompany" element={<EditCompany />} />
         </Routes>
       </div>
     </Router>

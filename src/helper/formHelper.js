@@ -55,6 +55,24 @@ export const updateform = (invoice, amt, acc_holder, user, token) => {
     });
 };
 
+export const editform = (form, gtotal, user, token) => {
+  return fetch(`${API}/load/editload/${user._id}/${gtotal}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(form),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const totalamount = (user, token) => {
   return fetch(`${API}/load/total/${user._id}`, {
     method: "GET",

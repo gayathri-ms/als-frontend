@@ -86,6 +86,7 @@ const Sidebar = () => {
                   {((item.title === "Form" ||
                     item.title === "Contact Details" ||
                     item.title === "Update Amount" ||
+                    item.title === "Edit Form" ||
                     item.title === "Display Details" ||
                     item.title === "Balance Details" ||
                     item.title === "Monthly Income" ||

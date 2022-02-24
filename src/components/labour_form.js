@@ -10,14 +10,23 @@ const Labour_form = () => {
     labour_name: "",
     l_id: "",
     address: "",
+    aadhaar: "",
     adv_amt: 0,
     advance: "",
     phone: "",
     salary: 0,
   });
 
-  const { labour_name, l_id, address, adv_amt, advance, phone, salary } =
-    values;
+  const {
+    labour_name,
+    l_id,
+    address,
+    aadhaar,
+    adv_amt,
+    advance,
+    phone,
+    salary,
+  } = values;
 
   const users = isAuthenticated();
   const [msg, setMsg] = useState("");
@@ -45,6 +54,7 @@ const Labour_form = () => {
           labour_name: "",
           l_id: "",
           address: "",
+          aadhaar: "",
           adv_amt: 0,
           advance: "",
           phone: "",
@@ -68,7 +78,7 @@ const Labour_form = () => {
           <div>
             <form onSubmit={onHandleSubmit}>
               <div className="md:flex">
-                <div className="mb-6 mr-5">
+                <div className="mb-6 mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Labour Id
                   </label>
@@ -77,6 +87,19 @@ const Labour_form = () => {
                     onChange={onHandle("l_id")}
                     value={l_id}
                     placeholder="Labour Id"
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+                <div className="mb-6 mr-5 md:w-1/2">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Aadhaar Number
+                  </label>
+                  <input
+                    type="text"
+                    onChange={onHandle("aadhaar")}
+                    placeholder="aadhaar"
+                    value={aadhaar}
                     required
                     className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                   />
@@ -110,19 +133,22 @@ const Labour_form = () => {
                   />
                 </div>
               </div>
-              <div className="mb-6 mr-5">
-                <label className=" mb-8 text-lg font-medium text-pink-600">
-                  Address
-                </label>
-                <input
-                  type="text"
-                  onChange={onHandle("address")}
-                  placeholder="Address"
-                  value={address}
-                  required
-                  className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                />
+              <div>
+                <div className="mb-6 mr-5">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    onChange={onHandle("address")}
+                    placeholder="Address"
+                    value={address}
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
               </div>
+
               <div className="md:flex ">
                 <div className="mb-6 mr-5">
                   <div>

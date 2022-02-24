@@ -72,6 +72,12 @@ export const SidebarData = [
         icon: <RiIcons.RiTruckLine />,
         cName: "sub-nav",
       },
+      {
+        title: "Edit Company",
+        path: "/editcompany",
+        icon: <FaIcons.FaEdit />,
+        cName: "sub-nav",
+      },
     ],
   },
   {
@@ -95,6 +101,11 @@ export const SidebarData = [
         cName: "sub-nav",
       },
     ],
+  },
+  {
+    title: "Edit Form",
+    path: "/editform",
+    icon: <FaIcons.FaEdit />,
   },
   {
     title: "Update Amount",

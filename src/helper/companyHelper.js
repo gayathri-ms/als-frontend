@@ -17,6 +17,24 @@ export const createCompany = (form, user, token) => {
     .catch((error) => console.log(error));
 };
 
+export const editCompany = (form, user, token) => {
+  return fetch(`${API}/company/update/${user._id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(form),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const getAllCompanies = (user, token) => {
   return fetch(`${API}/company/getallcompany/${user._id}`, {
     method: "GET",
