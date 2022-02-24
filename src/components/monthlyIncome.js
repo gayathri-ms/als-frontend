@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../helper/auth";
-import { getallform, updateform } from "../helper/formHelper";
 import {
   addIncome,
   getIncome,
@@ -49,9 +48,10 @@ const MonthlyIncome = () => {
     setMonth(e.target.value);
   };
 
-  const onHandleSubmit = () => {
+  const onHandleSubmit = (e) => {
+    e.preventDefault();
     const data = forms.filter((c) => c.month === Number(month));
-
+    console.log("month", month);
     if (data.length === 0) {
       // add
       addIncome(month, users.user, users.token)
@@ -59,8 +59,9 @@ const MonthlyIncome = () => {
           if (data.err) setMsg(data.err);
           else {
             setMonth("");
-            setTimeout(() => setMsg("Added Successfully"), 5000);
+            // setTimeout(() => setMsg("Added Successfully"), 5000);
             setMsg("");
+            window.location.reload(true);
           }
         })
         .catch((err) => console.log(err));
@@ -70,7 +71,7 @@ const MonthlyIncome = () => {
         if (data.err) setMsg(data.err);
         else {
           setMonth("");
-          setTimeout(() => setMsg("Updated Successfully"), 5000);
+          // setTimeout(() => setMsg("Updated Successfully"), 5000);
           setMsg("");
         }
       });
@@ -191,7 +192,7 @@ const MonthlyIncome = () => {
                         scope="col"
                         className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                       >
-                        Expenses
+                        Other Expenses
                       </th>
                       <th
                         scope="col"

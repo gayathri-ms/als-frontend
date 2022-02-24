@@ -7,7 +7,6 @@ const UpdateSal = () => {
     l_id: "",
     labour_name: "",
     salary: 0,
-    adv_amt: 0,
   });
   const [labourId, setLabourid] = useState([]);
   const { l_id, labour_name, salary, adv_amt } = detail;
@@ -52,7 +51,6 @@ const UpdateSal = () => {
             l_id: "",
             labour_name: "",
             salary: 0,
-            adv_amt: 0,
           });
         }
       })
@@ -113,22 +111,7 @@ const UpdateSal = () => {
                     />
                   </div>
                 </div>
-                <div className="md:flex">
-                  <div className="mb-6 mr-5 md:w-full">
-                    <label className=" mb-8 text-lg font-medium text-pink-600">
-                      Advance Amount
-                    </label>
 
-                    <input
-                      type="number"
-                      onChange={onHandle("adv_amt")}
-                      value={adv_amt}
-                      placeholder="Advance amount"
-                      required
-                      className="w-full md:mt-4 px-3 py-2  placeholder-gray-900 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                    />
-                  </div>
-                </div>
                 <div className="mb-6 mt-10 text-center">
                   <button
                     type="submit"

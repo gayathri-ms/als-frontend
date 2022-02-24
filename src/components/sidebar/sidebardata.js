@@ -154,7 +154,7 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: "Expenses",
+        title: "Other Expenses",
         path: "/expenses",
         icon: <HiIcons.HiCurrencyRupee />,
         cName: "sub-nav",

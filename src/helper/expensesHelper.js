@@ -1,7 +1,7 @@
 import { API } from "../components/variables";
 
 export const addExpenses = (form, user, token) => {
-  return fetch(`${API}/expenses/add/${user._id}`, {
+  return fetch(`${API}/expense/add/${user._id}`, {
     method: "POST",
     headers: {
       Accept: "application/json",
