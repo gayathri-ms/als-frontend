@@ -281,6 +281,12 @@ export const SidebarData = [
         icon: <HiIcons.HiCurrencyRupee />,
         cName: "sub-nav",
       },
+      {
+        title: "Update Advance",
+        path: "/updateadvance",
+        icon: <HiIcons.HiCurrencyRupee />,
+        cName: "sub-nav",
+      },
     ],
   },
 

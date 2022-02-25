@@ -49,3 +49,21 @@ export const updateSalary = (form, user, token) => {
       console.log(err);
     });
 };
+
+export const updateAdvance = (form, user, token) => {
+  return fetch(`${API}/labour/updateAdvance/${user._id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(form),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

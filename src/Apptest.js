@@ -47,6 +47,7 @@ import Dis_expenses from "./components/dis_expenses";
 import MonthlyIncome from "./components/monthlyIncome";
 import EditForm from "./components/editForm";
 import EditCompany from "./components/editCompany";
+import UpdateAdv from "./components/updateAdv";
 
 const Apptest = () => {
   return (
@@ -92,6 +93,7 @@ const Apptest = () => {
           <Route path="/monthlyIncome" element={<MonthlyIncome />} />
           <Route path="/editform" element={<EditForm />} />
           <Route path="/editcompany" element={<EditCompany />} />
+          <Route path="/updateadvance" element={<UpdateAdv />} />
         </Routes>
       </div>
     </Router>
