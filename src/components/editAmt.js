@@ -53,7 +53,8 @@ const EditAmt = (data) => {
     amt_received,
     acc_holder,
   } = values;
-  const [gtotal, setGtotal] = useState(grandtotal);
+  var gtotal = com.grandtotal;
+  // console.log("g", gtotal);
   const users = isAuthenticated();
   const [vehicles, setVehicles] = useState([]);
   const [companies, setCompanies] = useState([]);
@@ -93,8 +94,11 @@ const EditAmt = (data) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (gtotal > grandtotal) {
-      setGtotal(gtotal - grandtotal);
-    } else setGtotal(grandtotal - gtotal);
+      gtotal = (gtotal - grandtotal) * -1;
+    } else gtotal = grandtotal - gtotal;
+
+    // console.log("gtotal", gtotal);
+
     editform(values, gtotal, users.user, users.token).then((data) => {
       if (data.error) setMsg(data.error);
       else {
