@@ -43,13 +43,13 @@ const UpdateAdv = () => {
     // console.log("detail", detail);
     if (advance !== "") {
       if (advance === "1") {
-        var a = adv_amt * -1;
+        var a = adv_amt;
         setDetail({
           ...detail,
-          adv_amt: a,
+          adv_amt: a * -1,
         });
       }
-
+      console.log("adv", adv_amt);
       updateAdvance(detail, users.user, users.token)
         .then((data) => {
           if (data.err) {
@@ -57,10 +57,11 @@ const UpdateAdv = () => {
           } else {
             //   console.log("data", data);
             setMsg("Updated Successfully");
+            setAdvance("");
             setDetail({
               l_id: "",
               labour_name: "",
-              salary: 0,
+              adv_amt: 0,
             });
           }
         })

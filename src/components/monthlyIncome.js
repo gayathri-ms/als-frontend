@@ -58,8 +58,8 @@ const MonthlyIncome = () => {
     <div className="flex flex-col text-center">
       {/* <form> */}
       <div className="mb-6 mt-5 mr-5">
-        <div>
-          <label className=" mb-8 text-lg font-medium text-pink-600">
+        <div className="">
+          <label className="mb-8 text-lg font-medium text-pink-600">
             Month
           </label>
         </div>

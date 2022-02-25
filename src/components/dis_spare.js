@@ -118,13 +118,13 @@ const Dis_spare = () => {
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {spare.invoice}
                           </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {spare.name}
                           </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {spare.dateFormat}
                           </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {spare.reason}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">

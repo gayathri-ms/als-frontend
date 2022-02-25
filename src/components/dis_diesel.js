@@ -169,10 +169,10 @@ const Dis_diesel = () => {
                             {diesel.invoice}
                           </td>
 
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {diesel.dateFormat}
                           </td>
-                          <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
+                          <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                             {diesel.rate}
                           </td>
                           <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">

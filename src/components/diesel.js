@@ -6,6 +6,7 @@ import { getAllVehicle } from "../helper/vehicleHelper";
 const Diesel = () => {
   const [values, setValues] = useState({
     rate: "",
+    date: "",
     vehicle_no: "",
     no_ltrs: "",
     present_km: "",
@@ -13,7 +14,7 @@ const Diesel = () => {
 
   const [vehicles, setVehicles] = useState([]);
 
-  const { rate, vehicle_no, no_ltrs, present_km } = values;
+  const { rate, date, vehicle_no, no_ltrs, present_km } = values;
 
   const users = isAuthenticated();
   const [msg, setMsg] = useState("");
@@ -46,6 +47,7 @@ const Diesel = () => {
           setValues({
             ...values,
             rate: 0,
+            date: "",
             no_ltrs: 0,
             vehicle_no: "",
             present_km: 0,
@@ -68,7 +70,7 @@ const Diesel = () => {
               <div className="md:flex border-t-2 border-b-2 border-red-200"></div>
 
               <div className="md:flex mt-5">
-                <div className="mb-6 mr-5">
+                <div className="mb-6 mr-5 md:w-1/2">
                   <label className=" mb-8  text-lg font-medium text-pink-600">
                     Vehicle No
                   </label>
@@ -87,7 +89,36 @@ const Diesel = () => {
                     })}
                   </select>
                 </div>
-                <div className="mb-6 mr-5">
+                <div className="mb-6 mr-5 md:w-1/2">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    onChange={onHandle("date")}
+                    placeholder="DD/MM/YYYY"
+                    value={date}
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+              </div>
+
+              <div className="md:flex">
+                <div className="mb-6 mr-5 md:w-1/2">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Number Of Litre
+                  </label>
+                  <input
+                    type="number"
+                    onChange={onHandle("no_ltrs")}
+                    placeholder="No of Ltrs"
+                    value={no_ltrs}
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+                <div className="mb-6 mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Rate per ltr
                   </label>
@@ -101,36 +132,19 @@ const Diesel = () => {
                   />
                 </div>
               </div>
-
-              <div className="md:flex">
-                <div className="mb-6 mr-5">
-                  <label className=" mb-8 text-lg font-medium text-pink-600">
-                    Number Of Litre
-                  </label>
-                  <input
-                    type="number"
-                    onChange={onHandle("no_ltrs")}
-                    placeholder="No of Ltrs"
-                    value={no_ltrs}
-                    required
-                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                  />
-                </div>
-                <div className="mb-6 mr-5">
-                  <label className=" mb-8 text-lg font-medium text-pink-600">
-                    Present KM
-                  </label>
-                  <input
-                    type="number"
-                    onChange={onHandle("present_km")}
-                    placeholder="Present Km"
-                    value={present_km}
-                    required
-                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                  />
-                </div>
+              <div className="mb-6 mr-5 md:w-1/2">
+                <label className=" mb-8 text-lg font-medium text-pink-600">
+                  Present KM
+                </label>
+                <input
+                  type="number"
+                  onChange={onHandle("present_km")}
+                  placeholder="Present Km"
+                  value={present_km}
+                  required
+                  className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                />
               </div>
-
               <div className="mb-6 mt-10 text-center">
                 <button
                   type="submit"

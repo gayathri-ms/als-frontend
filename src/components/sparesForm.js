@@ -6,6 +6,7 @@ import { getAllVehicle } from "../helper/vehicleHelper";
 const Spares = () => {
   const [values, setValues] = useState({
     name: "",
+    date: "",
     rate: 0,
     reason: "",
     vehicle_no: "",
@@ -14,7 +15,7 @@ const Spares = () => {
 
   const [vehicles, setVehicles] = useState([]);
 
-  const { name, rate, reason, vehicle_no, place } = values;
+  const { name, date, rate, reason, vehicle_no, place } = values;
 
   const users = isAuthenticated();
   const [msg, setMsg] = useState("");
@@ -47,6 +48,7 @@ const Spares = () => {
           setValues({
             ...values,
             name: "",
+            date: "",
             rate: 0,
             reason: "",
             vehicle_no: "",
@@ -70,7 +72,7 @@ const Spares = () => {
               <div className="md:flex border-t-2 border-b-2 border-red-200"></div>
 
               <div className="md:flex mt-5">
-                <div className="mb-6 mr-5">
+                <div className="mb-6 mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Name
                   </label>
@@ -83,7 +85,7 @@ const Spares = () => {
                     className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                   />
                 </div>
-                <div className="mb-6 mr-5">
+                <div className="mb-6 mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Rate
                   </label>
@@ -97,21 +99,37 @@ const Spares = () => {
                   />
                 </div>
               </div>
-              <div className="mb-6 mr-5">
-                <label className=" mb-8 text-lg font-medium text-pink-600">
-                  Reason
-                </label>
-                <input
-                  type="text"
-                  onChange={onHandle("reason")}
-                  placeholder="Reason"
-                  value={reason}
-                  required
-                  className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                />
+              <div className="md:flex mt-5">
+                <div className="mb-6 mr-5 md:w-1/2">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Reason
+                  </label>
+                  <input
+                    type="text"
+                    onChange={onHandle("reason")}
+                    placeholder="Reason"
+                    value={reason}
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
+                <div className="mb-6 mr-5 md:w-1/2">
+                  <label className=" mb-8 text-lg font-medium text-pink-600">
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    onChange={onHandle("date")}
+                    placeholder="Date"
+                    value={date}
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
+                </div>
               </div>
+
               <div className="md:flex">
-                <div className="mb-6 mr-5">
+                <div className="mb-6 mr-5 md:w-1/2">
                   <label className=" mb-8  text-lg font-medium text-pink-600">
                     Vehicle No
                   </label>
@@ -130,7 +148,7 @@ const Spares = () => {
                     })}
                   </select>
                 </div>
-                <div className="mb-6 mr-5">
+                <div className="mb-6 mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Place
                   </label>

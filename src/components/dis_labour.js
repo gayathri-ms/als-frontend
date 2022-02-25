@@ -27,7 +27,7 @@ const Dis_labour = () => {
     const data = forms.filter(
       (c) =>
         c.labour_name !== undefined &&
-        c.company.toLowerCase().indexOf(e.target.value) !== -1
+        c.labour_name.toLowerCase().indexOf(e.target.value) !== -1
     );
     // console.log("data", data);
 

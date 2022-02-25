@@ -7,6 +7,7 @@ import { getAllVehicle } from "../helper/vehicleHelper";
 const Fc = () => {
   const [values, setValues] = useState({
     vehicle_no: "",
+    date: "",
     expenses: 0,
     broker_name: "",
     place: "",
@@ -16,7 +17,8 @@ const Fc = () => {
   const [vehicles, setVehicles] = useState([]);
   const [companies, setCompanies] = useState([]);
 
-  const { vehicle_no, expenses, broker_name, place, expired_date } = values;
+  const { vehicle_no, date, expenses, broker_name, place, expired_date } =
+    values;
 
   const users = isAuthenticated();
   const [msg, setMsg] = useState("");
@@ -51,6 +53,7 @@ const Fc = () => {
         setValues({
           ...values,
           vehicle_no: "",
+          date: "",
           expenses: 0,
           broker_name: "",
           place: "",
@@ -70,28 +73,45 @@ const Fc = () => {
           <div>
             <form onSubmit={onHandleSubmit}>
               <div className="md:flex border-t-2 border-b-2 border-red-200">
-                <div className="mb-6 mt-5 mr-5">
+                <div className="mb-6 mt-5 mr-5 md:w-1/2">
+                  <div className="mb-1">
+                    <label className="text-lg font-medium text-pink-600">
+                      Vehicle No
+                    </label>
+                  </div>
+                  <div>
+                    <select
+                      onChange={onHandle("vehicle_no")}
+                      value={vehicle_no}
+                      className="w-full my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                    >
+                      <option>Select</option>
+                      {vehicles.map((vehicle, index) => {
+                        return (
+                          <option key={index} value={vehicle.vehicle_no}>
+                            {vehicle.vehicle_no}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </div>
+                <div className="mt-6 mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
-                    Vehicle No
+                    Date
                   </label>
-                  <select
-                    onChange={onHandle("vehicle_no")}
-                    value={vehicle_no}
-                    className="w-full ml-5 my_dropdown md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                  >
-                    <option>Select</option>
-                    {vehicles.map((vehicle, index) => {
-                      return (
-                        <option key={index} value={vehicle.vehicle_no}>
-                          {vehicle.vehicle_no}
-                        </option>
-                      );
-                    })}
-                  </select>
+                  <input
+                    type="date"
+                    onChange={onHandle("date")}
+                    value={date}
+                    placeholder="Date"
+                    required
+                    className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                  />
                 </div>
               </div>
               <div className="md:flex">
-                <div className="mt-6 mr-5">
+                <div className="mt-6 mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Broker Name
                   </label>
@@ -104,7 +124,7 @@ const Fc = () => {
                     className="w-full md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                   />
                 </div>
-                <div className="mt-6 mr-5">
+                <div className="mt-6 mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Expenses
                   </label>
@@ -119,7 +139,7 @@ const Fc = () => {
                 </div>
               </div>
               <div className="md:flex">
-                <div className="mb-6 mt-6 mr-5">
+                <div className="mb-6 mt-6 mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Place
                   </label>
@@ -133,7 +153,7 @@ const Fc = () => {
                   />
                 </div>
 
-                <div className="mb-6 mt-6  mr-5">
+                <div className="mb-6 mt-6  mr-5 md:w-1/2">
                   <label className=" mb-8 text-lg font-medium text-pink-600">
                     Expired date
                   </label>
