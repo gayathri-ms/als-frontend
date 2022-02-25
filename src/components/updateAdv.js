@@ -7,10 +7,11 @@ const UpdateAdv = () => {
     l_id: "",
     labour_name: "",
     adv_amt: 0,
+    advance: "",
   });
   const [labourId, setLabourid] = useState([]);
-  const [advance, setAdvance] = useState("");
-  const { l_id, labour_name, adv_amt } = detail;
+  // const [advance, setAdvance] = useState("");
+  const { l_id, labour_name, advance, adv_amt } = detail;
   const [msg, setMsg] = useState("");
   const onHandle = (name) => (e) => {
     if (name === "l_id") {
@@ -42,14 +43,6 @@ const UpdateAdv = () => {
     e.preventDefault();
     // console.log("detail", detail);
     if (advance !== "") {
-      if (advance === "1") {
-        var a = adv_amt;
-        setDetail({
-          ...detail,
-          adv_amt: a * -1,
-        });
-      }
-      console.log("adv", adv_amt);
       updateAdvance(detail, users.user, users.token)
         .then((data) => {
           if (data.err) {
@@ -57,11 +50,12 @@ const UpdateAdv = () => {
           } else {
             //   console.log("data", data);
             setMsg("Updated Successfully");
-            setAdvance("");
+
             setDetail({
               l_id: "",
               labour_name: "",
               adv_amt: 0,
+              advance: "",
             });
           }
         })
@@ -113,13 +107,15 @@ const UpdateAdv = () => {
                       Advance
                     </label>
                     <select
-                      onChange={(e) => setAdvance(e.target.value)}
+                      onChange={onHandle("advance")}
                       value={advance}
                       className="w-full p-2 bg-white max-w-25 md:mt-4 px-3 py-2 placeholder-gray-500 border border-gray-400 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                     >
                       <option value="">Select</option>
-                      <option value="0">Giving Advance Amount to Labour</option>
-                      <option value="1">
+                      <option value="yes">
+                        Giving Advance Amount to Labour
+                      </option>
+                      <option value="no">
                         Getting advance amount from labour
                       </option>
                     </select>
