@@ -41,7 +41,7 @@ const Home = () => {
                             scope="col"
                             className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                           >
-                            Date
+                            Load Date
                           </th>
                           <th
                             scope="col"
@@ -65,7 +65,13 @@ const Home = () => {
                             scope="col"
                             className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                           >
-                            Number of Loads
+                            No of Loads - In
+                          </th>
+                          <th
+                            scope="col"
+                            className="py-3 px-6 text-md font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                          >
+                            No of Loads - Out
                           </th>
                           <th
                             scope="col"
@@ -104,7 +110,7 @@ const Home = () => {
                                 {com.invoice}
                               </td>
                               <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                {com.dateformat}
+                                {com.load_date}
                               </td>
                               <td className="py-4 px-6 text-md text-gray-500 whitespace-nowrap dark:text-gray-400">
                                 {com.vehicle_no}
@@ -116,7 +122,10 @@ const Home = () => {
                                 {com.rate}
                               </td>
                               <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {com.no_loads}
+                                {com.no_loads_in}
+                              </td>
+                              <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {com.no_loads_out}
                               </td>
                               <td className="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {com.grandtotal}
