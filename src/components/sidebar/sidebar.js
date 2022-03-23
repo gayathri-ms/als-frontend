@@ -53,7 +53,7 @@ const Sidebar = () => {
           <NavIcon className="flex justify-start text-4xl items-center" to="#">
             <FaIcons.FaBars className="my_sticky" onClick={showSidebar} />
             <h1 className="fixed opacity-0 md:opacity-100 text-2xl lg:text-4xl lg:font-bold text-pink-600 left-1/3">
-              SRI AMMAN LORRY SERVICE
+              SRI AMMAN LORRY SERVICES
             </h1>
             {isAuthenticated() ? (
               <button
