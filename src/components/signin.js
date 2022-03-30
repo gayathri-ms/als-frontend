@@ -21,11 +21,17 @@ const Sample = () => {
     // console.log("value", values);
     signin(values)
       .then((data) => {
-        // console.log("data", data);
+        console.log("data", data);
         if (data.err) {
           setMsg(data.err);
           setValues({ ...values, email: "", password: "" });
-        } else authenticate(data, () => setRedirect(true));
+        } else {
+          if (data.user.role === 1) authenticate(data, () => setRedirect(true));
+          else
+            setMsg(
+              "Only admin has the permission or authority to see the details!!"
+            );
+        }
       })
       .catch((err) => console.log(err));
   };
