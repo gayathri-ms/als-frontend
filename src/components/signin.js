@@ -26,11 +26,12 @@ const Sample = () => {
           setMsg(data.err);
           setValues({ ...values, email: "", password: "" });
         } else {
-          if (data.user.role === 1) authenticate(data, () => setRedirect(true));
-          else
-            setMsg(
-              "Only admin has the permission or authority to see the details!!"
-            );
+          //if (data.user.role === 1) 
+          authenticate(data, () => setRedirect(true));
+          // else
+          //   setMsg(
+          //     "Only admin has the permission or authority to see the details!!"
+          //   );
         }
       })
       .catch((err) => console.log(err));
